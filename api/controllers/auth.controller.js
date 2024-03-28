@@ -40,4 +40,40 @@ const signin = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { signup, signin };
+const googleSignIn = asyncHandler(async (req, res) => {
+  const { email, name, googlePhotoUrl } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password: omitPassword, ...user } = user.toObject();
+      res
+        .status(200)
+        .cookie("accessToken", token, {
+          httpOnly: true,
+        })
+        .json(user);
+    } else {
+      const generatePassword = Math.random().toString(36).slice(-8);
+      const newUser = new User({
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(9).slice(-4),
+        password: generatePassword,
+        email: email,
+        profilePicture: googlePhotoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const { password: omitPassword, ...userData } = newUser.toObject();
+      res
+        .status(200)
+        .cookie("accessToken", token, { http: true })
+        .json(userData);
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+module.exports = { signup, signin, googleSignIn };

@@ -54,4 +54,18 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { updateUser };
+const deleteUser = asyncHandler(async (req, res) => {
+  if (req.user.id !== req.params.id) {
+    const error = new Error("Not allowed to delete user");
+    error.statusCode = 403; // Forbidden
+    throw error;
+  }
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    res.json({ message: "User has been deleted" });
+  } catch (error) {
+    throw error;
+  }
+});
+
+module.exports = { updateUser, deleteUser };

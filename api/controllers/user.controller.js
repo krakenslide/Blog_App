@@ -32,25 +32,25 @@ const updateUser = asyncHandler(async (req, res) => {
       error.statusCode = 400;
       throw error;
     }
+  }
 
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: {
-            username: req.body.username,
-            email: req.body.email,
-            profilePicture: req.body.profilePicture,
-            password: req.body.password,
-          },
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          profilePicture: req.body.profilePicture,
+          password: req.body.password,
         },
-        { new: true }
-      );
-      const { password: omitPassword, ...userData } = updatedUser.toObject();
-      res.json(userData);
-    } catch (error) {
-      throw error;
-    }
+      },
+      { new: true }
+    );
+    const { password: omitPassword, ...userData } = updatedUser.toObject();
+    res.json(userData);
+  } catch (error) {
+    throw error;
   }
 });
 

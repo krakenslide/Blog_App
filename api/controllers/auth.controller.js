@@ -10,10 +10,12 @@ const signup = asyncHandler(async (req, res) => {
       const newUser = await User.create(req.body);
       res.json({ newUser, message: "User added successfully", success: true });
     } else {
-      throw new Error("User Already Exists");
+      const error = new Error("Username already exists");
+      error.statusCode = 400;
+      throw error;
     }
   } catch (error) {
-    throw new Error(error);
+    throw error;
   }
 });
 
@@ -22,10 +24,12 @@ const signin = asyncHandler(async (req, res) => {
   try {
     const findUser = await User.findOne({ email: email });
     if (!findUser || !(await findUser.isPasswordMatched(password))) {
-      throw new Error("Invalid Credentials");
+      const error = new Error("Invalid Credentials");
+      error.statusCode = 400;
+      throw error;
     }
     const accessToken = jwt.sign({ id: findUser._id }, process.env.JWT_SECRET, {
-      expiresIn: "1",
+      expiresIn: "1d",
     });
     const { password: omitPassword, ...userData } = findUser.toObject();
     res.cookie("accessToken", accessToken, { httpOnly: true });
@@ -36,7 +40,7 @@ const signin = asyncHandler(async (req, res) => {
       message: "SignIn Successful",
     });
   } catch (error) {
-    throw new Error("Invalid Credentials");
+    throw error;
   }
 });
 

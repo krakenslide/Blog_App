@@ -27,7 +27,7 @@ const updateUser = asyncHandler(async (req, res) => {
       error.statusCode = 400; // Bad Request
       throw error;
     }
-    if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
+    if (!req.body.username.match(/^[a-zA-Z0-9_-]+$/)) {
       const error = new Error("Username can only contain letters and numbers");
       error.statusCode = 400;
       throw error;
@@ -45,7 +45,7 @@ const updateUser = asyncHandler(async (req, res) => {
           password: req.body.password,
         },
       },
-      { new: true }
+      { new: true },
     );
     const { password: omitPassword, ...userData } = updatedUser.toObject();
     res.json(userData);

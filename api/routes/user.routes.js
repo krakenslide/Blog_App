@@ -1,4 +1,8 @@
-const { updateUser, deleteUser } = require("../controllers/user.controller");
+const {
+  updateUser,
+  deleteUser,
+  signOut,
+} = require("../controllers/user.controller");
 
 const express = require("express");
 const { verifyToken } = require("../utils/verifyUser");

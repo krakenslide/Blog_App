@@ -3,9 +3,11 @@ const {
   signup,
   signin,
   googleSignIn,
+  signOut,
 } = require("../controllers/auth.controller");
 const router = express.Router();
 
+router.post("/signout", signOut);
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.post("/google", googleSignIn);

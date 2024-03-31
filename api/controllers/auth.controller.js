@@ -10,7 +10,9 @@ const signup = asyncHandler(async (req, res) => {
       const newUser = await User.create(req.body);
       res.json({ newUser, message: "User added successfully", success: true });
     } else {
-      const error = new Error("Username already exists");
+      const error = new Error(
+        "User with this email or username already exists",
+      );
       error.statusCode = 400;
       throw error;
     }
@@ -80,4 +82,15 @@ const googleSignIn = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { signup, signin, googleSignIn };
+const signOut = asyncHandler(async (req, res) => {
+  try {
+    res
+      .clearCookie("accessToken")
+      .status(200)
+      .json("User has been signed out.");
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+module.exports = { signup, signin, googleSignIn, signOut };

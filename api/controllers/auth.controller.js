@@ -30,9 +30,13 @@ const signin = asyncHandler(async (req, res) => {
       error.statusCode = 400;
       throw error;
     }
-    const accessToken = jwt.sign({ id: findUser._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const accessToken = jwt.sign(
+      { id: findUser._id, isAdmin: findUser.isAdmin },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      },
+    );
     const { password: omitPassword, ...userData } = findUser.toObject();
     res.cookie("accessToken", accessToken, { httpOnly: true });
     res.json({
@@ -51,7 +55,10 @@ const googleSignIn = asyncHandler(async (req, res) => {
   try {
     const user = await User.findOne({ email: email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { id: user._id, isAdmin: user.isAdmin },
+        process.env.JWT_SECRET,
+      );
       const { password: omitPassword, ...user } = user.toObject();
       res
         .status(200)
@@ -70,7 +77,10 @@ const googleSignIn = asyncHandler(async (req, res) => {
         profilePicture: googlePhotoUrl,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { id: newUser._id, isAdmin: newUser.isAdmin },
+        process.env.JWT_SECRET,
+      );
       const { password: omitPassword, ...userData } = newUser.toObject();
       res
         .status(200)

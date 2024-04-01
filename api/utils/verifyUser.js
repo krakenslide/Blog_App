@@ -13,4 +13,14 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken };
+const isAdmin = (req, res, next) => {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    const error = new Error("Not an admin.");
+    error.statusCode = 403; // Forbidden
+    throw error;
+  }
+};
+
+module.exports = { verifyToken, isAdmin };

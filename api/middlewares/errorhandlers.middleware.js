@@ -6,7 +6,7 @@ const notFound = (req, res, next) => {
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode == 200 ? 500 : err.statusCode;
   if (err.name === "MongoServerError" && err.code === 11000) {
-    res.status = 400;
+    res.status(400);
   } else {
     res.status(statusCode);
   }

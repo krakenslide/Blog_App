@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      defualt:
+      default:
         "https://images.hdqwalls.com/wallpapers/code-syntax-dark-minimal-4k-mr.jpg",
     },
     category: {

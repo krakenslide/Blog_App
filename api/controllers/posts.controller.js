@@ -65,7 +65,8 @@ const getPosts = asyncHandler(async (req, res) => {
       lastMonthPosts,
     });
   } catch (error) {
-    res.json(error.message);
+    error.statusCode(400);
+    throw error;
   }
 });
 

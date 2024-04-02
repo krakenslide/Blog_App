@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Table } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { MdDeleteSweep, MdEditDocument } from "react-icons/md";
 
 function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
   const currentuser = currentUser.findUser;
   const [userPosts, setUserPosts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
   console.log(userPosts);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -15,9 +15,13 @@ function DashPosts() {
         const res = await fetch(
           `/api/posts/getposts?userId=${currentuser._id}`,
         );
+
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
+          if (data.posts.length < 9) {
+            setShowMore(false);
+          }
         }
       } catch (error) {
         console.log(error.message);
@@ -28,8 +32,26 @@ function DashPosts() {
     }
   }, [currentuser._id]);
 
+  const handleShowMore = async () => {
+    const startIndex = userPosts.length;
+    try {
+      const res = await fetch(
+        `/api/posts/getposts?userId=${currentuser._id}&startIndex=${startIndex}`,
+      );
+      if (res.ok) {
+        const data = await res.json(); // Parse response data
+        setUserPosts((prev) => [...prev, ...data.posts]); // Update userPosts with the new fetched posts
+        if (data.posts.length < 9) {
+          setShowMore(false); // Hide the "Show More" button if there are no more posts to fetch
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="table-auto  md:mx-auto overflow-x-scroll p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentuser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
@@ -44,7 +66,7 @@ function DashPosts() {
               </Table.HeadCell>
             </Table.Head>
             {userPosts.map((post) => (
-              <Table.Body className="divide-y">
+              <Table.Body className="divide-y" key={post._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
                     {new Date(post.updatedAt).toLocaleDateString()}
@@ -81,6 +103,14 @@ function DashPosts() {
               </Table.Body>
             ))}
           </Table>
+          {showMore && (
+            <button
+              onClick={handleShowMore}
+              className="w-full text-teal-500 self-center text-sm py-7"
+            >
+              Show More...
+            </button>
+          )}
         </>
       ) : (
         <p>You have no posts yet...</p>

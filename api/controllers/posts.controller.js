@@ -30,7 +30,7 @@ const createPost = asyncHandler(async (req, res) => {
 const getPosts = asyncHandler(async (req, res) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 6;
+    const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.order === "asc" ? 1 : -1;
     const posts = await PostModel.find({
       ...(req.query.userId && { userId: req.query.userId }),

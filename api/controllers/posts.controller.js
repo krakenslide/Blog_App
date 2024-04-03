@@ -1,7 +1,7 @@
 const PostModel = require("../models/post.model");
 const asyncHandler = require("express-async-handler");
 
-const createPost = asyncHandler(async (req, res) => {
+const createPost = asyncHandler(async (req, res, next) => {
   if (!req.body.title || !req.body.content) {
     const error = new Error("Please fill all the required fields.");
     error.statusCode = 400; // Forbidden
@@ -23,11 +23,25 @@ const createPost = asyncHandler(async (req, res) => {
     const savedPost = await newPost.save();
     res.status(201).json(savedPost);
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
-const getPosts = asyncHandler(async (req, res) => {
+const deletePost = asyncHandler(async (req, res, next) => {
+  try {
+    const data = await PostModel.findOneAndDelete({ _id: req.params.id });
+    if (!data) {
+      const error = new Error("Error while deleting post.");
+      error.statusCode = 403; // Forbidden
+      throw error;
+    }
+    res.status(200).json({ message: "Post has been deleted." });
+  } catch (error) {
+    next(error);
+  }
+});
+
+const getPosts = asyncHandler(async (req, res, next) => {
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
@@ -65,9 +79,8 @@ const getPosts = asyncHandler(async (req, res) => {
       lastMonthPosts,
     });
   } catch (error) {
-    error.statusCode(400);
-    throw error;
+    next(error);
   }
 });
 
-module.exports = { createPost, getPosts };
+module.exports = { createPost, getPosts, deletePost };

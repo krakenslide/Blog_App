@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 
-const signup = asyncHandler(async (req, res) => {
+const signup = asyncHandler(async (req, res, next) => {
   const { email } = req.body;
   const findUser = await User.findOne({ email: email });
   try {
@@ -17,11 +17,11 @@ const signup = asyncHandler(async (req, res) => {
       throw error;
     }
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
-const signin = asyncHandler(async (req, res) => {
+const signin = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const findUser = await User.findOne({ email: email });
@@ -38,7 +38,7 @@ const signin = asyncHandler(async (req, res) => {
       },
     );
     const { password: omitPassword, ...userData } = findUser.toObject();
-    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("accessToken", accessToken, { httpOnly: false });
     res.json({
       success: true,
       findUser: userData,
@@ -46,7 +46,7 @@ const signin = asyncHandler(async (req, res) => {
       message: "SignIn Successful",
     });
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 

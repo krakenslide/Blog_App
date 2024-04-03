@@ -4,6 +4,7 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     throw new Error("Unauthorized");
   }
+
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
       throw new Error("Unauthorized");

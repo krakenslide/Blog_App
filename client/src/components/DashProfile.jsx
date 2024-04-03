@@ -296,14 +296,14 @@ export default function DashProfile() {
             </h3>
             <div className="flex justify-center gap-4">
               <Button
-                className="flex-1 flex-grow my-2 mx-4"
+                className="flex-1 flex-grow my-3 mx-4 bg-red-500 shadow-lg shadow-red-500/50"
                 color="failure"
                 onClick={handleDeleteUser}
               >
                 Yes, Delete this account
               </Button>
               <Button
-                className="flex-1 flex-grow my-2 mx-4"
+                className="flex-1 flex-grow my-3 mx-4 bg-cyan-500 shadow-lg shadow-cyan-500/50"
                 onClick={() => setShowModal(false)}
               >
                 No, cancel

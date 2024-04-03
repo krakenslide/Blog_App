@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
-const updateUser = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler(async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     const error = new Error("Not allowed to update user");
     error.statusCode = 403; // Forbidden
@@ -50,11 +50,11 @@ const updateUser = asyncHandler(async (req, res) => {
     const { password: omitPassword, ...userData } = updatedUser.toObject();
     res.json(userData);
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
-const deleteUser = asyncHandler(async (req, res) => {
+const deleteUser = asyncHandler(async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     const error = new Error("Not allowed to delete user");
     error.statusCode = 403; // Forbidden
@@ -64,7 +64,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     res.json({ message: "User has been deleted" });
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 

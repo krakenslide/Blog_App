@@ -83,4 +83,31 @@ const getPosts = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { createPost, getPosts, deletePost };
+const updatePost = asyncHandler(async (req, res, next) => {
+  try {
+    const getPost = await PostModel.findById(req.params.id);
+    if (getPost.userId !== req.user.id) {
+      const error = new Error("Not allowed to update this post.");
+      error.statusCode = 403;
+      throw error;
+    }
+
+    const updatedPost = await PostModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          category: req.body.category,
+          image: req.body.image,
+        },
+      },
+      { new: true }, // This option returns the updated document
+    );
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = { createPost, getPosts, deletePost, updatePost };

@@ -5,6 +5,7 @@ import { PiSignOut } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
+import { FaUsersRectangle } from "react-icons/fa6";
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -58,6 +59,17 @@ export default function DashSidebar() {
                 as="div"
               >
                 Posts
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentuser.isAdmin && (
+            <Link to="/dashboard?tab=users">
+              <Sidebar.Item
+                active={tab === "users"}
+                icon={FaUsersRectangle}
+                as="div"
+              >
+                Users
               </Sidebar.Item>
             </Link>
           )}

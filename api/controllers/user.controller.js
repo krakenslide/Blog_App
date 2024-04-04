@@ -55,7 +55,7 @@ const updateUser = asyncHandler(async (req, res, next) => {
 });
 
 const deleteUser = asyncHandler(async (req, res, next) => {
-  if (req.user.id !== req.params.id) {
+  if (!req.user.isAdmin && req.user.id !== req.params.id) {
     const error = new Error("Not allowed to delete user");
     error.statusCode = 403; // Forbidden
     throw error;

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Button, Modal, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
@@ -114,7 +115,7 @@ function DashPosts() {
                       }}
                       className="font-medium text-red-500 hover:underline cursor-pointer"
                     >
-                      Delete
+                      <FaTrashAlt className="text-xl ml-3 hover:text-red-600" />
                     </span>
                   </Table.Cell>
                   <Table.Cell>
@@ -123,7 +124,7 @@ function DashPosts() {
                       to={`/updatepost/${post._id}`}
                     >
                       <span className="font-medium text-teal-300 hover:underline cursor-pointer">
-                        Edit
+                        <FaEdit className="text-xl ml-1" />
                       </span>
                     </Link>
                   </Table.Cell>

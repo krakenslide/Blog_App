@@ -43,3 +43,14 @@ body {
 .dark .post-content a {
     color: teal;
 }
+
+.ql-syntax {
+    background-color: #282a36; /* Dracula theme background color */
+    color: #f8f8f2; /* Dracula theme text color */
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: "Fira Code", monospace; /* Or any other monospaced font */
+    font-size: 14px;
+    line-height: 1.5;
+}

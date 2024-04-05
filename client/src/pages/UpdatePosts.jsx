@@ -194,6 +194,14 @@ function UpdatePost() {
           placeholder="Write something here..."
           className="h-72 mb-12"
           required
+          modules={{
+            syntax: true, // Enable syntax module
+            toolbar: [
+              [{ header: [1, 2, false] }],
+              ["bold", "italic", "underline"],
+              ["image", "code-block"],
+            ],
+          }}
           onChange={(value) => setFormData({ ...formData, content: value })}
         />
         <Button type="submit" gradientDuoTone="greenToBlue" outline>

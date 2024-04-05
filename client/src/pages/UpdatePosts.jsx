@@ -102,7 +102,7 @@ function UpdatePost() {
       }
 
       // If there are changes, proceed to update the post
-      const res = await fetch(`/api/posts/updatepost/${formData._id}`, {
+      const res = await fetch(`/api/posts/updatepost/${postId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

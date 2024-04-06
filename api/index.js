@@ -3,6 +3,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
+const commentRoutes = require("./routes/comment.routes");
 const {
   notFound,
   errorHandler,
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use("/api/posts", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/comment", commentRoutes);
 app.use("*", (req, res, next) => {
   const error = new Error("Route not found");
   error.statusCode = 404;

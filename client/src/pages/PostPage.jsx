@@ -4,6 +4,7 @@ import { Button, Spinner } from "flowbite-react";
 import "highlight.js/styles/dark.css";
 import CallToAction from "../components/CallToAction.jsx";
 import { useSelector } from "react-redux";
+import CommentSection from "../components/CommentSection.jsx";
 
 function PostPage() {
   const { postslug } = useParams();
@@ -71,7 +72,10 @@ function PostPage() {
           dangerouslySetInnerHTML={{ __html: post && post.content }}
         ></div>
       </div>
-      {/*{!currentuserIsAdmin && <CallToAction />}*/}
+      {/*<div className="max-w-4xl mx-auto w-full">*/}
+      {/*  {!currentuserIsAdmin && <CallToAction />}*/}
+      {/*</div>*/}
+      <CommentSection postId={post._id} />
     </main>
   );
 }

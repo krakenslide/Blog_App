@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Spinner } from "flowbite-react";
 import "highlight.js/styles/dark.css";
+import CallToAction from "../components/CallToAction.jsx";
+import { useSelector } from "react-redux";
 
 function PostPage() {
   const { postslug } = useParams();
+  const { currentUser } = useSelector((state) => state.user);
+  const currentuserIsAdmin = currentUser?.findUser.isAdmin;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
@@ -38,7 +42,7 @@ function PostPage() {
       </div>
     );
   return (
-    <main className="p-3 flex flex-col nax-w-6xl mx-auto min-h-screen">
+    <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       <h1 className="text-3xl mt-10 p-3 text-center font-sans-Helvetica max-w-2xl mx-auto lg:text-4xl">
         {post && post.title}
       </h1>
@@ -67,6 +71,7 @@ function PostPage() {
           dangerouslySetInnerHTML={{ __html: post && post.content }}
         ></div>
       </div>
+      {/*{!currentuserIsAdmin && <CallToAction />}*/}
     </main>
   );
 }

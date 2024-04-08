@@ -9,8 +9,10 @@ import { FaUsersRectangle } from "react-icons/fa6";
 
 export default function DashSidebar() {
   const location = useLocation();
-  const { currentUser } = useSelector((state) => state.user);
-  const currentuser = currentUser.findUser;
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const [tab, setTab] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,14 +46,14 @@ export default function DashSidebar() {
             <Sidebar.Item
               active={tab === "profile"}
               icon={HiUser}
-              label={currentuser.isAdmin ? "Admin" : "User"}
+              label={currentUser.isAdmin ? "Admin" : "User"}
               labelColor="dark"
               as="div"
             >
               Profile
             </Sidebar.Item>
           </Link>
-          {currentuser.isAdmin && (
+          {currentUser.isAdmin && (
             <Link to="/dashboard?tab=posts">
               <Sidebar.Item
                 active={tab === "posts"}
@@ -62,7 +64,7 @@ export default function DashSidebar() {
               </Sidebar.Item>
             </Link>
           )}
-          {currentuser.isAdmin && (
+          {currentUser.isAdmin && (
             <Link to="/dashboard?tab=users">
               <Sidebar.Item
                 active={tab === "users"}

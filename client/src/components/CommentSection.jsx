@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Alert, Button, Textarea } from "flowbite-react";
+import Comment from "./Comment.jsx";
 
 function CommentSection({ postId }) {
-  const { currentUser } = useSelector((state) => state.user);
-  const currentuser = currentUser?.findUser;
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
   const [commentError, setCommentError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,33 +26,50 @@ function CommentSection({ postId }) {
         body: JSON.stringify({
           content: comment,
           postId,
-          userId: currentuser._id,
+          userId: currentUser._id,
         }),
       });
       const data = await res.json();
       if (res.ok) {
         setComment("");
+        setCommentError(null);
+        setComments([data, ...comments]);
       }
     } catch (error) {
       setComment("");
       setCommentError("");
     }
   };
+
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const res = await fetch(`/api/comment/getcomments/${postId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setComments(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getComments();
+  }, [postId]);
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
-      {currentuser ? (
+      {currentUser ? (
         <div className="flex items-center gap-1 my-5 text-gray-500 text-sm">
           <p>Signed in as:</p>
           <img
             className="h-5 w-5 object-cover rounded-full"
-            src={currentuser.profilePicture}
+            src={currentUser.profilePicture}
             alt=""
           />
           <Link
             to={"/dashboard?tab=profile"}
             className="text-xs text-cyan-500 hover:underline"
           >
-            @ {currentuser.username}
+            @ {currentUser.username}
           </Link>
         </div>
       ) : (
@@ -59,7 +80,7 @@ function CommentSection({ postId }) {
           </Link>
         </div>
       )}
-      {currentuser && (
+      {currentUser && (
         <form
           onSubmit={handleSubmit}
           className="border border-teal-500 rounded-xl p-3"
@@ -81,6 +102,21 @@ function CommentSection({ postId }) {
           </div>
           {commentError && <Alert color={"failure"}>{commentError}</Alert>}
         </form>
+      )}
+      {comments.length === 9 ? (
+        <p className="text-sm my-5">No comments yet !</p>
+      ) : (
+        <>
+          <div className="text-sm my-5 flex items-center gap-1">
+            <p>Comments</p>
+            <div className="border border-gray-400 py-1 px-2 rounded-sm">
+              <p>{comments.length}</p>
+            </div>
+          </div>
+          {comments.map((comment) => (
+            <Comment key={comment._id} comment={comment} />
+          ))}
+        </>
       )}
     </div>
   );

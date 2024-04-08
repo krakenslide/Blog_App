@@ -6,8 +6,10 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import { MdPersonRemoveAlt1 } from "react-icons/md";
 
 function DashUsers() {
-  const { currentUser } = useSelector((state) => state.user);
-  const currentuser = currentUser.findUser;
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const [users, setUsers] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -28,10 +30,10 @@ function DashUsers() {
         console.log(error.message);
       }
     };
-    if (currentuser.isAdmin) {
+    if (currentUser.isAdmin) {
       fetchUsers();
     }
-  }, [currentuser._id]);
+  }, [currentUser._id]);
 
   const handleShowMore = async () => {
     const startIndex = users.length;
@@ -68,7 +70,7 @@ function DashUsers() {
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {currentuser.isAdmin && users.length > 0 ? (
+      {currentUser.isAdmin && users.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>

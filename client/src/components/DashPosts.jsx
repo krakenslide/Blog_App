@@ -6,8 +6,10 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function DashPosts() {
-  const { currentUser } = useSelector((state) => state.user);
-  const currentuser = currentUser.findUser;
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +18,7 @@ function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `/api/posts/getposts?userId=${currentuser._id}`,
+          `/api/posts/getposts?userId=${currentUser._id}`,
         );
 
         const data = await res.json();
@@ -30,16 +32,16 @@ function DashPosts() {
         console.log(error.message);
       }
     };
-    if (currentuser.isAdmin) {
+    if (currentUser.isAdmin) {
       fetchPosts();
     }
-  }, [currentuser._id]);
+  }, [currentUser._id]);
 
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `/api/posts/getposts?userId=${currentuser._id}&startIndex=${startIndex}`,
+        `/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
       );
       if (res.ok) {
         const data = await res.json(); // Parse response data
@@ -75,7 +77,7 @@ function DashPosts() {
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {currentuser.isAdmin && userPosts.length > 0 ? (
+      {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>

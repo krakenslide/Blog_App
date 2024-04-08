@@ -10,7 +10,10 @@ import { signoutSuccess } from "../redux/user/userSlice.js";
 export default function Header() {
   const dispatch = useDispatch();
   const path = useLocation().pathname;
-  const { currentUser } = useSelector((state) => state.user);
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const { theme } = useSelector((state) => state.theme);
   const handleSignOut = async () => {
     try {
@@ -69,9 +72,7 @@ export default function Header() {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">
-                @{currentUser.findUser.username}
-              </span>
+              <span className="block text-sm">@{currentUser.username}</span>
               <span className="block text-sm font-medium truncate">
                 {currentUser.email}
               </span>

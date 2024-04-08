@@ -106,4 +106,19 @@ const getUsers = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { updateUser, deleteUser, getUsers };
+const getUserForComments = asyncHandler(async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      const error = new Error("No user found.");
+      error.status = 404;
+      throw error;
+    }
+    const { password: omitPassword, ...userData } = user.toObject();
+    res.status(200).json(userData);
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = { updateUser, deleteUser, getUsers, getUserForComments };

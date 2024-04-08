@@ -9,7 +9,7 @@ import CommentSection from "../components/CommentSection.jsx";
 function PostPage() {
   const { postslug } = useParams();
   const { currentUser } = useSelector((state) => state.user);
-  const currentuserIsAdmin = currentUser?.findUser.isAdmin;
+  //const currentuserIsAdmin = currentUser?.findUser.isAdmin;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);

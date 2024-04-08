@@ -24,7 +24,11 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 export default function DashProfile() {
-  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const { error, loading } = useSelector((state) => state.user);
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser.findUser) {
+    currentUser = currentUser.findUser;
+  }
   const dispatch = useDispatch();
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
@@ -53,8 +57,7 @@ export default function DashProfile() {
   };
 
   const getUserId = () => {
-    const userId =
-      currentUser._id == null ? currentUser.findUser._id : currentUser._id;
+    const userId = currentUser._id == null ? currentUser._id : currentUser._id;
     return userId;
   };
 
@@ -196,7 +199,7 @@ export default function DashProfile() {
             />
           )}
           <img
-            src={imageFileUrl || currentUser.findUser.profilePicture}
+            src={imageFileUrl || currentUser.profilePicture}
             alt="user"
             className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
               imageFileUploadProgress &&
@@ -212,14 +215,14 @@ export default function DashProfile() {
           type="text"
           id="username"
           placeholder="username"
-          defaultValue={currentUser.findUser.username}
+          defaultValue={currentUser.username}
           onChange={handleChange}
         />
         <TextInput
           type="email"
           id="email"
           placeholder="email"
-          defaultValue={currentUser.findUser.email}
+          defaultValue={currentUser.email}
           onChange={handleChange}
         />
         <TextInput
@@ -236,7 +239,7 @@ export default function DashProfile() {
         >
           {loading ? "Loading..." : "Update"}
         </Button>
-        {currentUser.findUser.isAdmin && (
+        {currentUser.isAdmin && (
           <Link to={"/createpost"}>
             <Button
               type="button"

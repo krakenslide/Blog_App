@@ -11,7 +11,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const path = useLocation().pathname;
   let { currentUser } = useSelector((state) => state.user);
-  if (currentUser.findUser) {
+  if (currentUser?.findUser) {
     currentUser = currentUser.findUser;
   }
   const { theme } = useSelector((state) => state.theme);

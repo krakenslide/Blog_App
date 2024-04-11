@@ -6,6 +6,7 @@ import { LiaCommentsSolid } from "react-icons/lia";
 import { HiOutlineClipboardDocument } from "react-icons/hi2";
 import { Button, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function DashboardComp() {
   const [users, setUsers] = useState([]);
@@ -92,7 +93,13 @@ function DashboardComp() {
   return (
     <div className="p-3 md:mx-auto">
       <div className="flex-wrap flex gap-4 justify-center">
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+        {/* Statistics cards */}
+        <motion.div
+          className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex justify-between">
             <div>
               <h3 className="text-gray-500 text-md uppercase">Total Users</h3>
@@ -107,8 +114,14 @@ function DashboardComp() {
             </span>
             <div className="text-gray-500">Last Month</div>
           </div>
-        </div>
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <div className="flex justify-between">
             <div>
               <h3 className="text-gray-500 text-md uppercase">Total Posts</h3>
@@ -123,8 +136,14 @@ function DashboardComp() {
             </span>
             <div className="text-gray-500">Last Month</div>
           </div>
-        </div>
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <div className="flex justify-between">
             <div>
               <h3 className="text-gray-500 text-md uppercase">
@@ -141,10 +160,17 @@ function DashboardComp() {
             </span>
             <div className="text-gray-500">Last Month</div>
           </div>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Tables section */}
       <div className="flex flex-wrap gap-4 py-3 mx-auto justify-center">
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <motion.div
+          className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex justify-between  p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Users</h1>
             <Button outline gradientDuoTone="cyanToBlue">
@@ -172,8 +198,14 @@ function DashboardComp() {
                 </Table.Body>
               ))}
           </Table>
-        </div>
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Posts</h1>
             <Button outline gradientDuoTone="cyanToBlue">
@@ -203,8 +235,14 @@ function DashboardComp() {
                 </Table.Body>
               ))}
           </Table>
-        </div>
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <div className="flex justify-between  p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Comments</h1>
             <Button outline gradientDuoTone="cyanToBlue">
@@ -234,7 +272,7 @@ function DashboardComp() {
                 </Table.Body>
               ))}
           </Table>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

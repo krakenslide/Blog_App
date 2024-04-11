@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUsersRectangle } from "react-icons/fa6";
-import { MdOutlineInsertComment } from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineInsertComment } from "react-icons/md";
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -43,6 +43,16 @@ export default function DashSidebar() {
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
+          <Link to="/dashboard?tab=dash">
+            <Sidebar.Item
+              active={tab === "dash"}
+              icon={MdOutlineDashboard}
+              labelColor="dark"
+              as="div"
+            >
+              Dashboard
+            </Sidebar.Item>
+          </Link>
           <Link to="/dashboard?tab=profile">
             <Sidebar.Item
               active={tab === "profile"}

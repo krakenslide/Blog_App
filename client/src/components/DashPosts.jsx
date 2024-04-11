@@ -4,6 +4,7 @@ import { Button, Modal, Table } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function DashPosts() {
   let { currentUser } = useSelector((state) => state.user);
@@ -76,27 +77,32 @@ function DashPosts() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex-1 overflow-x-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500"
+    >
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Post image</Table.HeadCell>
-              <Table.HeadCell>Post title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
+              <Table.HeadCell className="w-24">Date updated</Table.HeadCell>
+              <Table.HeadCell className="w-24">Post image</Table.HeadCell>
+              <Table.HeadCell className="w-48">Post title</Table.HeadCell>
+              <Table.HeadCell className="w-24">Category</Table.HeadCell>
+              <Table.HeadCell className="w-16">Delete</Table.HeadCell>
+              <Table.HeadCell className="w-16">
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
             {userPosts.map((post) => (
               <Table.Body className="divide-y" key={post._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
+                  <Table.Cell className="w-24">
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className="w-24">
                     <Link to={`/post/${post.slug}`}>
                       <img
                         src={post.image}
@@ -105,11 +111,11 @@ function DashPosts() {
                       />
                     </Link>
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className="w-48">
                     <Link to={`/post/${post.slug}`}>{post.title}</Link>
                   </Table.Cell>
-                  <Table.Cell>{post.category}</Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className="w-24">{post.category}</Table.Cell>
+                  <Table.Cell className="w-16">
                     <span
                       onClick={() => {
                         setShowModal(true);
@@ -120,7 +126,7 @@ function DashPosts() {
                       <FaTrashAlt className="text-xl ml-3 hover:text-red-600" />
                     </span>
                   </Table.Cell>
-                  <Table.Cell>
+                  <Table.Cell className="w-16">
                     <Link
                       className="text-teal-500"
                       to={`/updatepost/${post._id}`}
@@ -177,7 +183,7 @@ function DashPosts() {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+    </motion.div>
   );
 }
 

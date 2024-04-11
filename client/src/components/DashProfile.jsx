@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Alert, Button, TextInput, Modal } from "flowbite-react";
+import { motion } from "framer-motion";
 import {
   getDownloadURL,
   getStorage,
@@ -164,8 +165,24 @@ export default function DashProfile() {
       console.log(error.message);
     }
   };
+
+  // Function to hide success and error alerts after 3 seconds
+  useEffect(() => {
+    const hideAlerts = setTimeout(() => {
+      setUpdateUserSuccess(null);
+      setUpdateUserError(null);
+    }, 3000);
+
+    return () => clearTimeout(hideAlerts);
+  }, [updateUserSuccess, updateUserError]);
+
   return (
-    <div className="max-w-lg mx-auto p-3 w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-lg mx-auto p-3 w-full"
+    >
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -252,13 +269,6 @@ export default function DashProfile() {
         )}
       </form>
       <div className=" flex justify-between mt-5">
-        {/*<Button
-          className="cursor-pointer"
-          gradientDuoTone="pinkToOrange"
-          outline
-        >
-          Delete Account
-  </Button>*/}
         <span
           onClick={() => setShowModal(true)}
           className="text-red-500 cursor-pointer"
@@ -315,6 +325,6 @@ export default function DashProfile() {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+    </motion.div>
   );
 }

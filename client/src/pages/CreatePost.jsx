@@ -12,6 +12,7 @@ import { app } from "../firebase.js";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function CreatePost() {
   const [files, setFiles] = useState(null);
@@ -82,10 +83,33 @@ function CreatePost() {
   };
 
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-4 sm:flex-row justify-between">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="p-3 max-w-3xl mx-auto min-h-screen"
+    >
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-center text-3xl my-7 font-semibold"
+      >
+        Create a post
+      </motion.h1>
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col gap-4 sm:flex-row justify-between"
+        >
           <TextInput
             type="text"
             placeholder="Title"
@@ -102,19 +126,23 @@ function CreatePost() {
             }
           >
             <option value="uncategorized">Select a category</option>
-            <option value="javascript">Javascript</option>
-            <option value="reactjs">ReactJS</option>
-            <option value="nodejs">NodeJ</option>
-            <option value="expressjs">ExpressJS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="reactjs">React.js</option>
+            <option value="nodejs">Node.js</option>
+            <option value="expressjs">Express.js</option>
           </Select>
-        </div>
-        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3"
+        >
           <FileInput
             type="file"
             accept="image/*"
             onChange={(e) => setFiles(e.target.files[0])}
           />
-
           <Button
             type="button"
             gradientDuoTone="greenToBlue"
@@ -134,40 +162,55 @@ function CreatePost() {
               "Upload Image"
             )}
           </Button>
-        </div>
+        </motion.div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
-          <img
+          <motion.img
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             src={formData.image}
             alt="upload"
             className="w-full h-72 object-cover"
           />
         )}
-        <ReactQuill
-          theme="snow"
-          placeholder="Write something here..."
-          className="h-72 mb-12"
-          required
-          modules={{
-            syntax: true, // Enable syntax module
-            toolbar: [
-              [{ header: [1, 2, false] }],
-              ["bold", "italic", "underline"],
-              ["image", "code-block"],
-            ],
-          }}
-          onChange={(value) => setFormData({ ...formData, content: value })}
-        />
-        <Button type="submit" gradientDuoTone="greenToBlue" outline>
-          Publish
-        </Button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <ReactQuill
+            theme="snow"
+            placeholder="Write something here..."
+            className="h-72 mb-12"
+            required
+            modules={{
+              syntax: true,
+              toolbar: [
+                [{ header: [1, 2, false] }],
+                ["bold", "italic", "underline"],
+                ["image", "code-block"],
+              ],
+            }}
+            onChange={(value) => setFormData({ ...formData, content: value })}
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+        >
+          <Button type="submit" gradientDuoTone="greenToBlue" outline>
+            Publish
+          </Button>
+        </motion.div>
         {publishError && (
           <Alert className="mt-5" color="failure">
             {publishError}
           </Alert>
         )}
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   );
 }
 

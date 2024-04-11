@@ -5,6 +5,8 @@ import "highlight.js/styles/dark.css";
 import CallToAction from "../components/CallToAction.jsx";
 import { useSelector } from "react-redux";
 import CommentSection from "../components/CommentSection.jsx";
+import PostCard from "../components/PostCard.jsx";
+import { motion } from "framer-motion";
 
 function PostPage() {
   const { postslug } = useParams();
@@ -12,6 +14,7 @@ function PostPage() {
   //const currentuserIsAdmin = currentUser?.findUser.isAdmin;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [recentPosts, setRecentPosts] = useState(null);
   const [post, setPost] = useState(null);
   useEffect(() => {
     const fetchPost = async () => {
@@ -35,6 +38,21 @@ function PostPage() {
     };
     fetchPost();
   }, [postslug]);
+
+  useEffect(() => {
+    try {
+      const fetchRecentPosts = async () => {
+        const res = await fetch(`/api/posts/getposts?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentPosts(data.posts);
+        }
+      };
+      fetchRecentPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   if (loading)
     return (
@@ -76,6 +94,18 @@ function PostPage() {
       {/*  {!currentuserIsAdmin && <CallToAction />}*/}
       {/*</div>*/}
       <CommentSection postId={post._id} />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col justify-center items-center mb-5"
+      >
+        <h1 className="text-xl mt-5">Recent articles</h1>
+        <div className="flex flex-row gap-5 mt-5 justify-center">
+          {recentPosts &&
+            recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
+        </div>
+      </motion.div>
     </main>
   );
 }

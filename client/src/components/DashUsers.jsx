@@ -4,6 +4,7 @@ import { Button, Modal, Table } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { MdPersonRemoveAlt1 } from "react-icons/md";
+import { motion } from "framer-motion";
 
 function DashUsers() {
   let { currentUser } = useSelector((state) => state.user);
@@ -69,7 +70,12 @@ function DashUsers() {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500"
+    >
       {currentUser.isAdmin && users.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
@@ -161,7 +167,7 @@ function DashUsers() {
           </div>
         </Modal.Body>
       </Modal>
-    </div>
+    </motion.div>
   );
 }
 

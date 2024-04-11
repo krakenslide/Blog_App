@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUsersRectangle } from "react-icons/fa6";
+import { MdOutlineInsertComment } from "react-icons/md";
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -72,6 +73,18 @@ export default function DashSidebar() {
                 as="div"
               >
                 Users
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=comments">
+              <Sidebar.Item
+                active={tab === "comments"}
+                icon={MdOutlineInsertComment}
+                className="cursor-pointer"
+                as="div"
+              >
+                Comments
               </Sidebar.Item>
             </Link>
           )}

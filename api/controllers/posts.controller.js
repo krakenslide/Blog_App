@@ -110,4 +110,33 @@ const updatePost = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { createPost, getPosts, deletePost, updatePost };
+const fetchCategory = asyncHandler(async (req, res, next) => {
+  try {
+    const categories = await PostModel.aggregate([
+      {
+        $group: {
+          _id: "$category", // Group by the category field
+        },
+      },
+      {
+        $project: {
+          _id: 0, // Exclude the _id field from the output
+          category: "$_id", // Rename _id to category
+        },
+      },
+    ]).then((categories) => {
+      // categories will contain an array of unique categories
+      res.json(categories);
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = {
+  createPost,
+  getPosts,
+  deletePost,
+  updatePost,
+  fetchCategory,
+};

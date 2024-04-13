@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -20,7 +20,9 @@ function CreatePost() {
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
+  const [categories, setCategories] = useState([]);
   const [publishError, setPublishError] = useState(null);
+  const [isNewCategory, setIsNewCategory] = useState(false);
 
   const handleUploadImage = async () => {
     try {
@@ -82,6 +84,15 @@ function CreatePost() {
     }
   };
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await fetch("/api/posts/categories");
+      const categories = await res.json();
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -121,17 +132,36 @@ function CreatePost() {
             }
           />
           <Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
+            onChange={(e) => {
+              const value = e.target.value;
+              setFormData({ ...formData, category: value });
+              setIsNewCategory(value === "new_category");
+            }}
+            defaultValue="uncategorized"
           >
-            <option value="uncategorized">Select a category</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nodejs">Node.js</option>
-            <option value="expressjs">Express.js</option>
+            <option value="uncategorized">Select category</option>
+            {categories &&
+              categories.length > 0 &&
+              categories.map((category, index) => (
+                <option key={index} value={category.category}>
+                  {category.category}
+                </option>
+              ))}
+            <option value="new_category">New Category</option>
           </Select>
+
+          {isNewCategory && (
+            <TextInput
+              type="text"
+              placeholder="Enter new category"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+            />
+          )}
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -200,7 +230,12 @@ function CreatePost() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
         >
-          <Button type="submit" gradientDuoTone="greenToBlue" outline>
+          <Button
+            type="submit"
+            gradientDuoTone="greenToBlue"
+            outline
+            className="w-full"
+          >
             Publish
           </Button>
         </motion.div>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,10 @@ import { GiKrakenTentacle } from "react-icons/gi";
 
 export default function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const path = useLocation().pathname;
+  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
   let { currentUser } = useSelector((state) => state.user);
   if (currentUser?.findUser) {
     currentUser = currentUser.findUser;
@@ -35,8 +38,24 @@ export default function Header() {
     }
   };
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
   return (
-    <Navbar className="border-b-2">
+    <Navbar className="!dark:bg-black border-b-2 border-teal-500">
       <Link to="/" className="flex items-center self-center">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -92,6 +111,7 @@ export default function Header() {
           <AiOutlineSearch />
         </Button>
       </motion.div>
+
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}

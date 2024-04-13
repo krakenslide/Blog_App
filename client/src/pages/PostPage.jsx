@@ -10,8 +10,10 @@ import { motion } from "framer-motion";
 
 function PostPage() {
   const { postslug } = useParams();
-  const { currentUser } = useSelector((state) => state.user);
-  //const currentuserIsAdmin = currentUser?.findUser.isAdmin;
+  let { currentUser } = useSelector((state) => state.user);
+  if (currentUser?.findOne) {
+    currentUser = currentUser.findOne;
+  }
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [recentPosts, setRecentPosts] = useState(null);
@@ -69,7 +71,7 @@ function PostPage() {
         to={`/search?category=${post && post.category}`}
         className="self-center mt-5"
       >
-        <Button color="teal" pill size="xs" outline>
+        <Button gradientDuoTone="cyanToBlue" pill size="xs" outline>
           {post && post.category}
         </Button>
       </Link>
@@ -90,9 +92,9 @@ function PostPage() {
           dangerouslySetInnerHTML={{ __html: post && post.content }}
         ></div>
       </div>
-      {/*<div className="max-w-4xl mx-auto w-full">*/}
-      {/*  {!currentuserIsAdmin && <CallToAction />}*/}
-      {/*</div>*/}
+      <div className="max-w-4xl mx-auto w-full">
+        {!currentUser.isAdmin && <CallToAction />}
+      </div>
       <CommentSection postId={post._id} />
       <motion.div
         initial={{ opacity: 0, y: 50 }}

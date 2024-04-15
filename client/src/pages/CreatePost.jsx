@@ -219,7 +219,7 @@ function CreatePost() {
               toolbar: [
                 [{ header: [1, 2, false] }],
                 ["bold", "italic", "underline"],
-                ["image", "code-block"],
+                ["code-block"],
               ],
             }}
             onChange={(value) => setFormData({ ...formData, content: value })}

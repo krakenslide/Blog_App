@@ -89,28 +89,25 @@ export default function Header() {
           </motion.span>
         </motion.div>
       </Link>
-      <motion.form
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        action=""
-      >
+      <form className="cursor-pointer" onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline"
-        />
-      </motion.form>
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        ></TextInput>
+      </form>
+      <Button
+        type="submit"
+        className="w-12 h-10 lg:hidden"
+        color="gray"
+        pill
+        onClick={handleSubmit}
       >
-        <Button className="w-12 h-10 lg:hidden" color="gray" pill>
-          <AiOutlineSearch />
-        </Button>
-      </motion.div>
+        <AiOutlineSearch />
+      </Button>
 
       <motion.div
         initial={{ opacity: 0, x: 20 }}

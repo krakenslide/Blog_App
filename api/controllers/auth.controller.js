@@ -59,13 +59,13 @@ const googleSignIn = asyncHandler(async (req, res) => {
         { id: user._id, isAdmin: user.isAdmin },
         process.env.JWT_SECRET,
       );
-      const { password: omitPassword, ...user } = user.toObject();
+      const { password: omitPassword, ...userData } = user.toObject();
       res
         .status(200)
         .cookie("accessToken", token, {
           httpOnly: true,
         })
-        .json(user);
+        .json(userData);
     } else {
       const generatePassword = Math.random().toString(36).slice(-8);
       const newUser = new User({

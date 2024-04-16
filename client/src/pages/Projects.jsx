@@ -51,7 +51,7 @@ export default function Projects() {
             <h2 className="text-2xl mb-4">Check out Ankit's GitHub</h2>
             <motion.a
               as="a"
-              href="https://github.com/ankitjain28may"
+              href="https://github.com/krakenslide"
               target="_blank"
               className="inline-flex items-center justify-center px-6 py-3 bg-teal-500 hover:bg-teal-600 transition-colors duration-300 rounded-md text-white text-lg font-medium"
               whileHover={{ scale: 1.05 }}

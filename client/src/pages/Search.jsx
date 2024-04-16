@@ -28,7 +28,6 @@ function Search() {
         category: categoryFromUrl,
       });
     }
-    console.log(sideBarData);
     const fetchPosts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
@@ -161,7 +160,7 @@ function Search() {
           {loading && <p className="text-xl text-gray-500">Loading...</p>}
           {!loading &&
             posts &&
-            posts.map((post) => <PostCard key={post.id} post={post} />)}
+            posts.map((post, index) => <PostCard key={index} post={post} />)}
           {showMore && (
             <button
               onClick={handleShowMore}

@@ -15,23 +15,25 @@ import {
   SiTypescript,
   SiAngular,
   SiDotnet,
-  SiMicrosoftsqlserver,
   SiExpress,
   SiLevelsdotfyi,
+  SiSpring,
+  SiSpringboot,
+  SiApachemaven,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
-import { HiBuildingOffice2 } from "react-icons/hi2";
 import { IoSchool } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
 import { RiMentalHealthFill } from "react-icons/ri";
+import { FaGitAlt, FaJava } from "react-icons/fa";
 
 export default function About() {
   const { theme } = useSelector((state) => state.theme);
   const heroImageDark =
-    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXZmMTl6ZnJmeXc1bmdhdWFzdGpxeHN6aDVyZ280Nzlkc2wyb20yZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hWXNXXSXNcJ5l2ocZ3/giphy.gif";
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHhxbG8yeWI3ejR2MDNhaXI1dGtvcDh4NWtyanZvdjRoamtyNGVmcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jqwzq0LoZOfLqqJZ0b/giphy.gif";
 
   const heroImageLight =
-    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExemMzYndjZ3hhdXhhOWR0YWN2dXZmYm41ZnE2ejNwcHo2YnE4OWVwbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/chESHINZYVFWfm2rdT/giphy.gif";
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzV5cnR2ZW9hcDgzYnlpNDZ6NTYzdzJwd2JnNDAwemZyMDgwdG84bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vReTmBHnPsC4oHS/giphy.gif";
 
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
@@ -62,8 +64,10 @@ export default function About() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-center"
         >
-          <h1 className="text-5xl font-bold mb-6">About Me</h1>
-          <p className="text-lg">
+          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-gray-500">
+            About Me
+          </h1>
+          <p className="text-lg text-gray-200 dark:text-gray-500">
             I'm Ankit, a passionate developer on a journey to explore and master
             various technologies.
           </p>
@@ -86,17 +90,21 @@ export default function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-center"
+          className="text-center max-w-3xl"
         >
-          <h1 className="text-5xl font-bold mb-6">Description</h1>
-          <p className="text-lg m-5 p-5">
-            Accomplished full-stack developer with approximately 1 year of
-            professional experience in software development focused on web apps.
-            Experienced in Angular 2+, TypeScript, C#, and .NET Core and
-            involving SDLC. Proficient in Data Structures and Algorithms (DSA)
-            and problem solving. Seeking new opportunities to apply my
-            expertise, driven by a strong passion for learning new technologies
-            and embracing fresh challenges.
+          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-gray-500">
+            Description
+          </h1>
+          <p className="text-md m-5 p-5 text-gray-200 dark:text-gray-500">
+            Much like the iconic DVD logo bouncing around the screen, I'm
+            navigating the diverse corners of technology, never settling in one
+            place for too long. Here today, exploring tomorrow - a perpetual
+            journey through the digital landscape. With a background in .NET,
+            C#, Angular, and TypeScript, I've embarked on a journey to
+            specialize in the MERN stack (MongoDB, Express.js, React, Node.js).
+            I've honed my skills as a full stack developer, crafting robust and
+            scalable web applications while staying adaptable to the
+            ever-changing landscape of web development.
           </p>
         </motion.div>
       </motion.div>
@@ -118,15 +126,15 @@ export default function About() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <div className="container mx-auto py-16">
+        <div className="container min-h-screen mx-auto py-16">
           <h2
             className={
-              "text-4xl font-bold mb-8 text-center text-gray-200 dark:text-gray-200"
+              "text-4xl font-bold mb-8 text-center text-gray-200 dark:text-gray-500"
             }
           >
             Technologies worked with
           </h2>
-          <div className="grid grid-cols-5 gap-8 justify-items-center">
+          <div className="p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
             <TechStack
               icon={<SiReact className="text-6xl text-blue-500 mb-2" />}
               name="React"
@@ -169,14 +177,7 @@ export default function About() {
               shadow="shadow-red-500"
               theme={theme}
             />
-            <TechStack
-              icon={
-                <SiMicrosoftsqlserver className="text-6xl text-green-500 mb-2" />
-              }
-              name="SQL Server"
-              shadow="shadow-green-500"
-              theme={theme}
-            />
+
             <TechStack
               icon={<SiDotnet className="text-6xl text-purple-500 mb-2" />}
               name=".NET Core"
@@ -187,6 +188,60 @@ export default function About() {
               icon={<TbBrandCSharp className="text-6xl text-purple-500 mb-2" />}
               name="C#"
               shadow="shadow-purple-500"
+              theme={theme}
+            />
+            <TechStack
+              icon={<FaGitAlt className="text-6xl text-orange-600 mb-2" />}
+              name="Git"
+              shadow="shadow-orange-600"
+              theme={theme}
+            />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"
+        style={{
+          backgroundImage:
+            theme === "dark"
+              ? `url(${heroImageDark})`
+              : `url(${heroImageLight})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          transform: `scale(${scale})`,
+        }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        <div className="container mx-auto py-16">
+          <h2 className="text-4xl font-bold mb-8 text-center text-gray-200 dark:text-gray-500">
+            Technologies currently learning
+          </h2>
+          <div className="p-5 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+            <TechStack
+              icon={<FaJava className="text-6xl text-red-500 mb-2" />}
+              name="Java"
+              shadow="shadow-red-500"
+              theme={theme}
+            />
+            <TechStack
+              icon={<SiSpring className="text-6xl text-green-500 mb-2" />}
+              name="Spring"
+              shadow="shadow-green-500"
+              theme={theme}
+            />
+            <TechStack
+              icon={<SiSpringboot className="text-6xl text-green-500 mb-2" />}
+              name="Spring Boot"
+              shadow="shadow-green-500"
+              theme={theme}
+            />
+            <TechStack
+              icon={<SiApachemaven className="text-6xl text-orange-500 mb-2" />}
+              name="Maven"
+              shadow="shadow-orange-500"
               theme={theme}
             />
           </div>
@@ -200,7 +255,7 @@ export default function About() {
         <div className="flex items-center justify-center pt-10">
           <h2
             className={
-              "text-4xl font-bold mb-8 text-center text-gray-600 dark:text-gray-200"
+              "text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-500"
             }
           >
             Professional Timeline
@@ -216,18 +271,18 @@ export default function About() {
               className="vertical-timeline-element--work"
               contentStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(79, 209, 199)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(255, 165, 0)",
                 color: theme === "dark" ? "#fff" : "#fff",
               }}
               contentArrowStyle={{
                 borderRight: `7px solid ${
-                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(79, 209, 199)"
+                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(255, 165, 0)"
                 }`,
               }}
               date={
                 <span
                   style={{
-                    color: theme === "dark" ? "#fff" : "rgb(79, 209, 199)",
+                    color: theme === "dark" ? "#fff" : "rgb(255, 165, 0)",
                   }}
                 >
                   2023 - Present
@@ -235,12 +290,12 @@ export default function About() {
               }
               iconStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(79, 209, 199)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(255, 165, 0)",
                 color: "#fff",
               }}
               icon={<SiLevelsdotfyi />}
             >
-              <h3 className="vertical-timeline-element-title">
+              <h3 className="vertical-timeline-element-title font-bold">
                 Continuous Learning and Growth
               </h3>
               <p>
@@ -257,18 +312,18 @@ export default function About() {
               className="vertical-timeline-element--work"
               contentStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(79, 209, 199)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(255, 107, 107)",
                 color: theme === "dark" ? "#fff" : "#fff",
               }}
               contentArrowStyle={{
                 borderRight: `7px solid ${
-                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(79, 209, 199)"
+                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(255, 107, 107)"
                 }`,
               }}
               date={
                 <span
                   style={{
-                    color: theme === "dark" ? "#fff" : "rgb(79, 209, 199)",
+                    color: theme === "dark" ? "#fff" : "rgb(255, 107, 107)",
                   }}
                 >
                   June 2023 - Aug 2023
@@ -276,12 +331,14 @@ export default function About() {
               }
               iconStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(79, 209, 199)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(255, 107, 107)",
                 color: "#fff",
               }}
               icon={<RiMentalHealthFill />}
             >
-              <h3 className="vertical-timeline-element-title">Health break</h3>
+              <h3 className="vertical-timeline-element-title font-bold">
+                Health break
+              </h3>
               <p>
                 Hiatus to address personal health and attend to pertinent
                 personal matters.
@@ -292,18 +349,18 @@ export default function About() {
               className="vertical-timeline-element--work"
               contentStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(33, 150, 243)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(15, 57, 143)",
                 color: theme === "dark" ? "#fff" : "#fff",
               }}
               contentArrowStyle={{
                 borderRight: `7px solid ${
-                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(33, 150, 243)"
+                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(15, 57, 143)"
                 }`,
               }}
               date={
                 <span
                   style={{
-                    color: theme === "dark" ? "#fff" : "rgb(33, 150, 243)",
+                    color: theme === "dark" ? "#fff" : "rgb(15, 57, 143)",
                   }}
                 >
                   2022-2023
@@ -311,12 +368,12 @@ export default function About() {
               }
               iconStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(33, 150, 243)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(15, 57, 143)",
                 color: "#fff",
               }}
               icon={<MdWork />}
             >
-              <h3 className="vertical-timeline-element-title">
+              <h3 className="vertical-timeline-element-title font-bold">
                 Associate Software Engineer
               </h3>
               <h4 className="vertical-timeline-element-subtitle">
@@ -344,18 +401,18 @@ export default function About() {
               className="vertical-timeline-element--education"
               contentStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(45, 55, 72)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(17, 24, 38)",
                 color: theme === "dark" ? "#fff" : "#fff",
               }}
               contentArrowStyle={{
                 borderRight: `7px solid ${
-                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(45, 55, 72)"
+                  theme === "dark" ? "rgb(20, 184, 166)" : "rgb(17, 24, 38)"
                 }`,
               }}
               date={
                 <span
                   style={{
-                    color: theme === "dark" ? "#fff" : "rgb(45, 55, 72)",
+                    color: theme === "dark" ? "#fff" : "rgb(17, 24, 38)",
                   }}
                 >
                   2018-2022
@@ -363,12 +420,12 @@ export default function About() {
               }
               iconStyle={{
                 background:
-                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(45, 55, 72)",
+                  theme === "dark" ? "rgb(45, 55, 72)" : "rgb(17, 24, 38)",
                 color: "#fff",
               }}
               icon={<IoSchool />}
             >
-              <h3 className="vertical-timeline-element-title">
+              <h3 className="vertical-timeline-element-title font-bold">
                 Bachelor of Technology
               </h3>
               <h4 className="vertical-timeline-element-subtitle">

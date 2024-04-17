@@ -50,7 +50,7 @@ const signin = asyncHandler(async (req, res, next) => {
   }
 });
 
-const googleSignIn = asyncHandler(async (req, res) => {
+const googleSignIn = asyncHandler(async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
   try {
     const user = await User.findOne({ email: email });
@@ -88,7 +88,7 @@ const googleSignIn = asyncHandler(async (req, res) => {
         .json(userData);
     }
   } catch (error) {
-    throw new Error(error);
+    next(error);
   }
 });
 

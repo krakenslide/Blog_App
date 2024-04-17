@@ -12,6 +12,7 @@ import { app } from "../firebase.js";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function UpdatePost() {
   const [files, setFiles] = useState(null);
@@ -89,7 +90,6 @@ function UpdatePost() {
       );
       const existingPostData = await existingPostRes.json();
 
-      // Check if there are any changes in the form data
       if (
         formData.title === existingPostData.posts[0].title &&
         formData.category === existingPostData.posts[0].category &&
@@ -101,7 +101,6 @@ function UpdatePost() {
         return;
       }
 
-      // If there are changes, proceed to update the post
       const res = await fetch(`/api/posts/updatepost/${postId}`, {
         method: "PUT",
         headers: {
@@ -126,7 +125,12 @@ function UpdatePost() {
   };
 
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
+    <motion.div
+      className="p-3 max-w-3xl mx-auto min-h-screen"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h1 className="text-center text-3xl my-7 font-semibold">Update a post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -195,25 +199,72 @@ function UpdatePost() {
           className="h-72 mb-12"
           required
           modules={{
-            syntax: true, // Enable syntax module
+            syntax: true,
             toolbar: [
-              [{ header: [1, 2, false] }],
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
               ["bold", "italic", "underline"],
-              ["image", "code-block"],
+              ["code-block"],
+              [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+              [{ script: "sub" }, { script: "super" }],
+              [{ indent: "-1" }, { indent: "+1" }],
+              [{ direction: "rtl" }],
+              [{ size: ["small", false, "large", "huge"] }],
+              [
+                {
+                  color: [
+                    "black",
+                    "red",
+                    "green",
+                    "blue",
+                    "yellow",
+                    "orange",
+                    "purple",
+                    "white",
+                  ],
+                },
+                {
+                  background: [
+                    "black",
+                    "red",
+                    "green",
+                    "blue",
+                    "yellow",
+                    "orange",
+                    "purple",
+                    "white",
+                  ],
+                },
+              ],
+              [{ align: ["", "left", "center", "right", "justify"] }],
+
+              ["clean"],
             ],
           }}
           onChange={(value) => setFormData({ ...formData, content: value })}
         />
-        <Button type="submit" gradientDuoTone="greenToBlue" outline>
-          Update post
-        </Button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="pt-5"
+        >
+          <Button
+            type="submit"
+            gradientDuoTone="greenToBlue"
+            outline
+            className="w-full"
+          >
+            Update post
+          </Button>
+        </motion.div>
+
         {publishError && (
           <Alert className="mt-5" color="failure">
             {publishError}
           </Alert>
         )}
       </form>
-    </div>
+    </motion.div>
   );
 }
 

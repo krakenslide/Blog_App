@@ -70,13 +70,14 @@ export default function Home() {
       </div>
 
       {/* Recent Posts Section */}
-      <div className=" flex px-8 md:px-10 py-7">
+      <div className=" flex items-center justify-center px-8 md:px-9 py-7">
         {posts && posts.length > 0 && (
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-semibold text-center mb-4">
               Recent Posts
             </h2>
             <div className="flex flex-wrap items-start justify-center gap-6">
+              {/*flex-wrap items-start*/}
               {posts.map((post) => (
                 <motion.div
                   key={post._id}

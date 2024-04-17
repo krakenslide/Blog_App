@@ -217,9 +217,43 @@ function CreatePost() {
             modules={{
               syntax: true,
               toolbar: [
-                [{ header: [1, 2, false] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
                 ["bold", "italic", "underline"],
                 ["code-block"],
+                [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+                [{ script: "sub" }, { script: "super" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ direction: "rtl" }],
+                [{ size: ["small", false, "large", "huge"] }],
+                [
+                  {
+                    color: [
+                      "black",
+                      "red",
+                      "green",
+                      "blue",
+                      "yellow",
+                      "orange",
+                      "purple",
+                      "white",
+                    ],
+                  },
+                  {
+                    background: [
+                      "black",
+                      "red",
+                      "green",
+                      "blue",
+                      "yellow",
+                      "orange",
+                      "purple",
+                      "white",
+                    ],
+                  },
+                ],
+                [{ align: ["", "left", "center", "right", "justify"] }],
+
+                ["clean"],
               ],
             }}
             onChange={(value) => setFormData({ ...formData, content: value })}
@@ -229,6 +263,7 @@ function CreatePost() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
+          className="pt-5"
         >
           <Button
             type="submit"

@@ -27,7 +27,9 @@ function UpdatePost() {
   useEffect(() => {
     try {
       const fetchPosts = async () => {
-        const res = await fetch(`/api/posts/getposts?postId=${postId}`);
+        const res = await fetch(
+          `https://blog-app-f85t.onrender.com/api/posts/getposts?postId=${postId}`,
+        );
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -89,7 +91,7 @@ function UpdatePost() {
     try {
       // Fetch the existing post data from the server
       const existingPostRes = await fetch(
-        `/api/posts/getposts?postId=${postId}`,
+        `https://blog-app-f85t.onrender.com/api/posts/getposts?postId=${postId}`,
       );
       const existingPostData = await existingPostRes.json();
 
@@ -104,13 +106,16 @@ function UpdatePost() {
         return;
       }
 
-      const res = await fetch(`/api/posts/updatepost/${postId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `https://blog-app-f85t.onrender.com/api/posts/updatepost/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
+      );
 
       const data = await res.json();
       if (!res.ok) {

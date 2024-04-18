@@ -18,7 +18,7 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
     const getuser = async () => {
       try {
         const res = await fetch(
-          `/api/user/getuserpublicroute/${comment.userId}`,
+          `https://blog-app-f85t.onrender.com/api/user/getuserpublicroute/${comment.userId}`,
         );
         const data = await res.json();
         if (res.ok) {
@@ -51,13 +51,16 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`/api/comment/editcomment/${comment._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `https://blog-app-f85t.onrender.com/api/comment/editcomment/${comment._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: editedContent }),
         },
-        body: JSON.stringify({ content: editedContent }),
-      });
+      );
       await res.json();
       if (res.ok) {
         setIsEditing(false);

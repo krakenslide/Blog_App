@@ -19,7 +19,7 @@ function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `/api/posts/getposts?userId=${currentUser._id}`,
+          `https://blog-app-f85t.onrender.com/api/posts/getposts?userId=${currentUser._id}`,
         );
 
         const data = await res.json();
@@ -42,7 +42,7 @@ function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
+        `https://blog-app-f85t.onrender.com/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
       );
       if (res.ok) {
         const data = await res.json(); // Parse response data
@@ -59,9 +59,12 @@ function DashPosts() {
   const handleDeletePost = async () => {
     setShowModal(false);
     try {
-      const res = await fetch(`/api/posts/deletepost/${postIdToDelete}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://blog-app-f85t.onrender.com/api/posts/deletepost/${postIdToDelete}`,
+        {
+          method: "DELETE",
+        },
+      );
 
       const data = await res.json();
       if (!res.ok) {

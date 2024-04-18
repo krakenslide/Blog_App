@@ -22,17 +22,20 @@ function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch("/api/comment/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://blog-app-f85t.onrender.com/api/comment/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: comment,
+            postId,
+            userId: currentUser._id,
+          }),
         },
-        body: JSON.stringify({
-          content: comment,
-          postId,
-          userId: currentUser._id,
-        }),
-      });
+      );
       const data = await res.json();
       if (res.ok) {
         setComment("");
@@ -48,7 +51,9 @@ function CommentSection({ postId }) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getcomments/${postId}`);
+        const res = await fetch(
+          `https://blog-app-f85t.onrender.com/api/comment/getcomments/${postId}`,
+        );
         if (res.ok) {
           const data = await res.json();
           setComments(data);
@@ -66,9 +71,12 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(`/api/comment/likecomment/${commentId}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `https://blog-app-f85t.onrender.com/api/comment/likecomment/${commentId}`,
+        {
+          method: "PUT",
+        },
+      );
       if (res.ok) {
         const data = await res.json();
         setComments(
@@ -102,9 +110,12 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(`/api/comment/deletecomment/${commentId}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentId}`,
+        {
+          method: "DELETE",
+        },
+      );
       if (res.ok) {
         const data = await res.json();
         setComments(comments.filter((comment) => comment._id !== commentId));

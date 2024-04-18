@@ -25,9 +25,12 @@ export default function DashSidebar() {
   }, [location.search]);
   const handleSignOut = async () => {
     try {
-      const res = await fetch("/api/auth/signout", {
-        method: "POST",
-      });
+      const res = await fetch(
+        "https://blog-app-f85t.onrender.com/api/auth/signout",
+        {
+          method: "POST",
+        },
+      );
 
       const data = await res.json();
       if (!res.ok) {

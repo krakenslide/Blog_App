@@ -17,7 +17,9 @@ function DashComments() {
   useEffect(() => {
     const fetchComment = async () => {
       try {
-        const res = await fetch(`/api/comment/getcommentsdash`);
+        const res = await fetch(
+          `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash`,
+        );
 
         const data = await res.json();
         if (res.ok) {
@@ -39,7 +41,7 @@ function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/comment/getcommentsdash?startIndex=${startIndex}`,
+        `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash?startIndex=${startIndex}`,
       );
       if (res.ok) {
         const data = await res.json(); // Parse response data
@@ -57,7 +59,7 @@ function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/comment/deletecomment/${commentIdToDelete}`,
+        `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentIdToDelete}`,
         {
           method: "DELETE",
         },

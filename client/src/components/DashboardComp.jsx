@@ -27,7 +27,9 @@ function DashboardComp() {
     const fetchUser = async () => {
       if (currentUser.isAdmin) {
         try {
-          const res = await fetch(`/api/user/getusers?limit=5`);
+          const res = await fetch(
+            `https://blog-app-f85t.onrender.com/api/user/getusers?limit=5`,
+          );
           const data = await res.json();
           if (res.ok) {
             setUsers(data.users);
@@ -42,7 +44,9 @@ function DashboardComp() {
     const fetchPosts = async () => {
       if (currentUser.isAdmin) {
         try {
-          const res = await fetch(`/api/posts/getposts?limit=5`);
+          const res = await fetch(
+            `https://blog-app-f85t.onrender.com/api/posts/getposts?limit=5`,
+          );
           const data = await res.json();
           if (res.ok) {
             setPosts(data.posts);
@@ -57,11 +61,13 @@ function DashboardComp() {
     const fetchComments = async () => {
       if (currentUser.isAdmin) {
         try {
-          const res = await fetch(`/api/comment/getcommentsdash?limit=5`);
+          const res = await fetch(
+            `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash?limit=5`,
+          );
           const data = await res.json();
           const userPromises = data.comments.map(async (comment) => {
             const userRes = await fetch(
-              `/api/user/getuserpublicroute/${comment.userId}`,
+              `https://blog-app-f85t.onrender.com/api/user/getuserpublicroute/${comment.userId}`,
             );
             if (userRes.ok) {
               const userData = await userRes.json();

@@ -18,7 +18,9 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("/api/posts/getposts?limit=9");
+        const res = await fetch(
+          "https://blog-app-f85t.onrender.com/api/posts/getposts?limit=9",
+        );
         const data = await res.json();
         setPosts(data.posts);
       } catch (error) {

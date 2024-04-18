@@ -63,13 +63,16 @@ function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/posts/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://blog-app-f85t.onrender.com/api/posts/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
+      );
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
@@ -86,7 +89,9 @@ function CreatePost() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch("/api/posts/categories");
+      const res = await fetch(
+        "https://blog-app-f85t.onrender.com/api/posts/categories",
+      );
       const categories = await res.json();
       setCategories(categories);
     };

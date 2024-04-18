@@ -16,15 +16,18 @@ export default function OAuth() {
     provider.setCustomParameters({ prompt: "select_account" }); //switch gmail accounts when you try to sign in the next time instead of it directly logging you in.
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
-      const res = await fetch("/api/auth/google", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: resultsFromGoogle.user.displayName,
-          email: resultsFromGoogle.user.email,
-          googlePhotoUrl: resultsFromGoogle.user.photoURL,
-        }),
-      });
+      const res = await fetch(
+        "https://blog-app-f85t.onrender.com/api/auth/google",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: resultsFromGoogle.user.displayName,
+            email: resultsFromGoogle.user.email,
+            googlePhotoUrl: resultsFromGoogle.user.photoURL,
+          }),
+        },
+      );
 
       const data = await res.json();
       if (res.ok) {

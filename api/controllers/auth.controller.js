@@ -38,7 +38,12 @@ const signin = asyncHandler(async (req, res, next) => {
       },
     );
     const { password: omitPassword, ...userData } = findUser.toObject();
-    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      path: "/",
+    });
+
     res.json({
       success: true,
       findUser: userData,
@@ -62,9 +67,7 @@ const googleSignIn = asyncHandler(async (req, res, next) => {
       const { password: omitPassword, ...userData } = user.toObject();
       res
         .status(200)
-        .cookie("accessToken", token, {
-          httpOnly: true,
-        })
+        .cookie("accessToken", token, { httpOnly: true })
         .json(userData);
     } else {
       const generatePassword = Math.random().toString(36).slice(-8);

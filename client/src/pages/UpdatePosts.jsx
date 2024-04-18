@@ -21,6 +21,7 @@ function UpdatePost() {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const [formImage, setFormImage] = useState("");
   const { postId } = useParams();
 
   useEffect(() => {
@@ -36,6 +37,7 @@ function UpdatePost() {
         if (res.ok) {
           setPublishError(null);
           setFormData(data.posts[0]);
+          setFormImage(data.posts[0].image);
         }
       };
       fetchPosts();
@@ -71,6 +73,7 @@ function UpdatePost() {
             setImageUploadProgress(null);
             setImageUploadError(null);
             setFormData({ ...formData, image: downloadURL });
+            setFormImage(downloadURL);
           });
         },
       );
@@ -185,9 +188,9 @@ function UpdatePost() {
           </Button>
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-        {formData.image && (
+        {formImage && (
           <img
-            src={formData.image}
+            src={formImage}
             alt="upload"
             className="w-full h-72 object-cover"
           />

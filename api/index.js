@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const cors = require("cors"); // Import the cors middleware
+const cors = require("cors");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const commentRoutes = require("./routes/comment.routes");
@@ -29,7 +29,7 @@ app.use(
     origin: "*",
     methods: "*",
   }),
-); // Allow CORS for specified origin and all methods
+);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/api/posts", postRoutes);

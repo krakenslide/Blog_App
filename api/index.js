@@ -11,10 +11,10 @@ const {
 const postRoutes = require("./routes/posts.routes");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const app = express();
 const Port = process.env.PORT;
-const path = require("path");
 
 mongoose
   .connect(process.env.ATLAS_STRING)
@@ -22,7 +22,6 @@ mongoose
     console.log("Connected to MongoDb");
   })
   .catch((error) => console.log("Error while connecting to MongoDb. ", error));
-const __dirname = path.resolve();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -42,8 +41,10 @@ app.use("*", (req, res, next) => {
   error.statusCode = 404;
   next(error);
 });
+
 app.use(notFound);
 app.use(errorHandler);
+
 app.listen(Port, () => {
   console.log("Server is running on Port:", Port);
 });

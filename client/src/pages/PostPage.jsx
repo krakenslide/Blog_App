@@ -97,7 +97,7 @@ function PostPage() {
         ></div>
       </div>
       <div className="max-w-4xl mx-auto w-full">
-        {!currentUser.isAdmin && <CallToAction />}
+        <CallToAction />
       </div>
       <CommentSection postId={post._id} />
       <motion.div

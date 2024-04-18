@@ -2,8 +2,10 @@ const PostModel = require("../models/post.model");
 const asyncHandler = require("express-async-handler");
 
 const createPost = asyncHandler(async (req, res, next) => {
+  console.log("Creating a new post..");
   if (!req.body.title || !req.body.content) {
     const error = new Error("Please fill all the required fields.");
+    console.log("Please fill all the required fields.");
     error.statusCode = 400; // Forbidden
     throw error;
   }
@@ -18,10 +20,11 @@ const createPost = asyncHandler(async (req, res, next) => {
     slug,
     userId: req.user.id,
   });
-
+  console.log("Wating for mongo to create new post");
   try {
     const savedPost = await newPost.save();
     res.status(201).json(savedPost);
+    console.log("Create post completed ");
   } catch (error) {
     next(error);
   }
@@ -85,13 +88,15 @@ const getPosts = asyncHandler(async (req, res, next) => {
 
 const updatePost = asyncHandler(async (req, res, next) => {
   try {
+    console.log("Updating post..");
     const getPost = await PostModel.findById(req.params.id);
     if (getPost.userId !== req.user.id) {
+      console.log("Not allowed to update post..");
       const error = new Error("Not allowed to update this post.");
       error.statusCode = 403;
       throw error;
     }
-
+    console.log("Sending info to mongo to update post..");
     const updatedPost = await PostModel.findOneAndUpdate(
       { _id: req.params.id },
       {
@@ -105,6 +110,7 @@ const updatePost = asyncHandler(async (req, res, next) => {
       { new: true }, // This option returns the updated document
     );
     res.status(200).json(updatedPost);
+    console.log("Update post done");
   } catch (error) {
     next(error);
   }

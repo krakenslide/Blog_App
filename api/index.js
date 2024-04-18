@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const cors = require("cors"); // Import the cors middleware
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const commentRoutes = require("./routes/comment.routes");
@@ -23,6 +24,7 @@ mongoose
   })
   .catch((error) => console.log("Error while connecting to MongoDb. ", error));
 
+app.use(cors({ origin: "https://kraken-blog.netlify.app/", methods: "*" })); // Allow CORS for specified origin and all methods
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/api/posts", postRoutes);

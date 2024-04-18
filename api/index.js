@@ -26,7 +26,7 @@ mongoose
 
 app.use(
   cors({
-    origin: "https://my-blog-mlk047igp-ankits-projects-18edb47b.vercel.app/",
+    origin: "*",
     methods: "*",
   }),
 ); // Allow CORS for specified origin and all methods

@@ -6,9 +6,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "https://blog-app-f85t.onrender.com",
-        secure: false,
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: true,
       },
     },
   },

@@ -31,7 +31,7 @@ app.use(
       "https://blog-ekl5wlui8-ankits-projects-18edb47b.vercel.app",
       "https://my-blog-2q5rvq1kc-ankits-projects-18edb47b.vercel.app",
       "https://blog-app-8j8t.onrender.com",
-      "https://my-blog-1yw9df2bc-ankits-projects-18edb47b.vercel.app",
+      "https://my-blog-72apzwsh8-ankits-projects-18edb47b.vercel.app ",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,

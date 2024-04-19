@@ -30,6 +30,7 @@ function DashboardComp() {
           const res = await fetch(
             `https://blog-app-f85t.onrender.com/api/user/getusers?limit=5`,
             {
+              credentials: "include",
               headers: {
                 "Content-Type": "application/json",
               },

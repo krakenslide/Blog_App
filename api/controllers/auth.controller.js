@@ -41,7 +41,6 @@ const signin = asyncHandler(async (req, res, next) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       path: "/",
-      expires: "1d",
     });
     res.json({
       success: true,

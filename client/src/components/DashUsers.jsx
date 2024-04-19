@@ -19,7 +19,7 @@ function DashUsers() {
     const fetchUsers = async () => {
       try {
         const res = await fetch(
-          `https://blog-app-f85t.onrender.com/api/user/getusers`,
+          `https://blog-app-8j8t.onrender.com/api/user/getusers`,
           {
             credentials: "include",
             headers: {
@@ -48,7 +48,7 @@ function DashUsers() {
     const startIndex = users.length;
     try {
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/user/getusers?startIndex=${startIndex}`,
+        `https://blog-app-8j8t.onrender.com/api/user/getusers?startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -71,7 +71,7 @@ function DashUsers() {
   const handleDeleteUser = async () => {
     try {
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/user/deleteuser/${userIdToDelete}`,
+        `https://blog-app-8j8t.onrender.com/api/user/deleteuser/${userIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",

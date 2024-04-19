@@ -78,7 +78,7 @@ export default function DashProfile() {
     try {
       dispatch(updateStart());
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/user/update/${getUserId()}`,
+        `https://blog-app-8j8t.onrender.com/api/user/update/${getUserId()}`,
         {
           method: "PUT",
           credentials: "include",
@@ -140,12 +140,13 @@ export default function DashProfile() {
       dispatch(deleteUserStart());
       console.log(getUserId());
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/user/deleteuser/${getUserId()}`,
+        `https://blog-app-8j8t.onrender.com/api/user/deleteuser/${getUserId()}`,
         {
           method: "DELETE",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
           },
         },
       );
@@ -163,12 +164,13 @@ export default function DashProfile() {
   const handleSignOut = async () => {
     try {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/auth/signout",
+        "https://blog-app-8j8t.onrender.com/api/auth/signout",
         {
           method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
           },
         },
       );

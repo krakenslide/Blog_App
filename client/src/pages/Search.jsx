@@ -32,7 +32,7 @@ function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/posts/getposts?${searchQuery}`,
+        `https://blog-app-8j8t.onrender.com/api/posts/getposts?${searchQuery}`,
       );
       if (!res.ok) {
         setLoading(false);

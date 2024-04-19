@@ -64,7 +64,7 @@ function CreatePost() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/posts/create",
+        "https://blog-app-8j8t.onrender.com/api/posts/create",
         {
           method: "POST",
           credentials: "include",
@@ -91,7 +91,7 @@ function CreatePost() {
   useEffect(() => {
     const fetchCategories = async () => {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/posts/categories",
+        "https://blog-app-8j8t.onrender.com/api/posts/categories",
         {
           credentials: "include",
           headers: {

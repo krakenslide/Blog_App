@@ -23,7 +23,7 @@ function CommentSection({ postId }) {
     }
     try {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/comment/create",
+        "https://blog-app-8j8t.onrender.com/api/comment/create",
         {
           method: "POST",
           credentials: "include",
@@ -53,7 +53,7 @@ function CommentSection({ postId }) {
     const getComments = async () => {
       try {
         const res = await fetch(
-          `https://blog-app-f85t.onrender.com/api/comment/getcomments/${postId}`,
+          `https://blog-app-8j8t.onrender.com/api/comment/getcomments/${postId}`,
         );
         if (res.ok) {
           const data = await res.json();
@@ -73,7 +73,7 @@ function CommentSection({ postId }) {
         return;
       }
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/comment/likecomment/${commentId}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/likecomment/${commentId}`,
         {
           credentials: "include",
           method: "PUT",

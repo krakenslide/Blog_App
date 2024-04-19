@@ -26,7 +26,7 @@ export default function DashSidebar() {
   const handleSignOut = async () => {
     try {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/auth/signout",
+        "https://blog-app-8j8t.onrender.com/api/auth/signout",
         {
           method: "POST",
           credentials: "include",

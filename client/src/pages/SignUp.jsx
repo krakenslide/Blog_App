@@ -32,7 +32,7 @@ export default function Signup() {
       setErrorMessage(null);
       //add a proxy to fetch the address
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/auth/signup",
+        "https://blog-app-8j8t.onrender.com/api/auth/signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

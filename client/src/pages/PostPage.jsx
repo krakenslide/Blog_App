@@ -23,7 +23,7 @@ function PostPage() {
       try {
         setLoading(true);
         const res = await fetch(
-          `https://blog-app-f85t.onrender.com/api/posts/getposts?slug=${postslug}`,
+          `https://blog-app-8j8t.onrender.com/api/posts/getposts?slug=${postslug}`,
         );
         const data = await res.json();
         if (!res.ok) {
@@ -47,7 +47,7 @@ function PostPage() {
     try {
       const fetchRecentPosts = async () => {
         const res = await fetch(
-          `https://blog-app-f85t.onrender.com/api/posts/getposts?limit=3`,
+          `https://blog-app-8j8t.onrender.com/api/posts/getposts?limit=3`,
         );
         const data = await res.json();
         if (res.ok) {

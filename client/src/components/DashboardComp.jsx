@@ -28,11 +28,12 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `https://blog-app-f85t.onrender.com/api/user/getusers?limit=5`,
+            `https://blog-app-8j8t.onrender.com/api/user/getusers?limit=5`,
             {
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
               },
             },
           );
@@ -51,11 +52,12 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `https://blog-app-f85t.onrender.com/api/posts/getposts?limit=5`,
+            `https://blog-app-8j8t.onrender.com/api/posts/getposts?limit=5`,
             {
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
               },
             },
           );
@@ -74,11 +76,12 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash?limit=5`,
+            `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash?limit=5`,
             {
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
               },
             },
           );

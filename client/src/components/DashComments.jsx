@@ -18,11 +18,12 @@ function DashComments() {
     const fetchComment = async () => {
       try {
         const res = await fetch(
-          `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash`,
+          `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash`,
           {
             credentials: "include",
             headers: {
               "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
             },
           },
         );
@@ -47,11 +48,12 @@ function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash?startIndex=${startIndex}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash?startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
           },
         },
       );
@@ -71,12 +73,13 @@ function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentIdToDelete}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/deletecomment/${commentIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
           },
         },
       );

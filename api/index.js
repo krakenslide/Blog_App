@@ -31,6 +31,11 @@ app.use(
     credentials: true,
   }),
 );
+
+app.use("/api/healthcheck", (req, res) => {
+  res.status(200).json({ message: "HealthCheck Success" });
+});
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/api/posts", postRoutes);

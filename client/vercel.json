@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path(.*)",
+      "source": "/api",
       "destination": "https://blog-app-8j8t.onrender.com"
     },
     {

@@ -26,7 +26,7 @@ mongoose
 
 app.use(
   cors({
-    origin: "https://blog-app-xi-one.vercel.app",
+    origin: ["http://localhost:5173", "https://blog-app-xi-one.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),

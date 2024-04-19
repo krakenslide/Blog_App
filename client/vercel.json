@@ -1,12 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:match",
-      "destination": "https://blog-app-8j8t.onrender.com/api/:match"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
-}
+{ "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }] }

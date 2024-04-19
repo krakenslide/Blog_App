@@ -7,7 +7,7 @@
     "dev": "nodemon api/index.js",
     "start": "node --inspect api/index.js",
     "server": "nodemon api/index.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "",

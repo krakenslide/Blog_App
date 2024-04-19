@@ -19,6 +19,12 @@ function DashComments() {
       try {
         const res = await fetch(
           `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
         );
 
         const data = await res.json();
@@ -42,6 +48,12 @@ function DashComments() {
     try {
       const res = await fetch(
         `https://blog-app-f85t.onrender.com/api/comment/getcommentsdash?startIndex=${startIndex}`,
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       if (res.ok) {
         const data = await res.json(); // Parse response data
@@ -62,6 +74,10 @@ function DashComments() {
         `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentIdToDelete}`,
         {
           method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       );
       const data = await res.json();

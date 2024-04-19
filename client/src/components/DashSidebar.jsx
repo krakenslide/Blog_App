@@ -29,6 +29,10 @@ export default function DashSidebar() {
         "https://blog-app-f85t.onrender.com/api/auth/signout",
         {
           method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       );
 

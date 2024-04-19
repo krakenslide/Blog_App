@@ -29,6 +29,7 @@ function UpdatePost() {
       const fetchPosts = async () => {
         const res = await fetch(
           `https://blog-app-f85t.onrender.com/api/posts/getposts?postId=${postId}`,
+          { credentials: "include" },
         );
         const data = await res.json();
         if (!res.ok) {
@@ -92,6 +93,7 @@ function UpdatePost() {
       // Fetch the existing post data from the server
       const existingPostRes = await fetch(
         `https://blog-app-f85t.onrender.com/api/posts/getposts?postId=${postId}`,
+        { credentials: "include" },
       );
       const existingPostData = await existingPostRes.json();
 
@@ -110,6 +112,7 @@ function UpdatePost() {
         `https://blog-app-f85t.onrender.com/api/posts/updatepost/${postId}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

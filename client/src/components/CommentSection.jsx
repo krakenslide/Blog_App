@@ -26,6 +26,7 @@ function CommentSection({ postId }) {
         "https://blog-app-f85t.onrender.com/api/comment/create",
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -74,6 +75,7 @@ function CommentSection({ postId }) {
       const res = await fetch(
         `https://blog-app-f85t.onrender.com/api/comment/likecomment/${commentId}`,
         {
+          credentials: "include",
           method: "PUT",
         },
       );
@@ -114,6 +116,7 @@ function CommentSection({ postId }) {
         `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentId}`,
         {
           method: "DELETE",
+          credentials: "include",
         },
       );
       if (res.ok) {

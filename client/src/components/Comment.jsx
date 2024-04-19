@@ -55,6 +55,7 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
         `https://blog-app-f85t.onrender.com/api/comment/editcomment/${comment._id}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

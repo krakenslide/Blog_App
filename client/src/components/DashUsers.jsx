@@ -20,6 +20,12 @@ function DashUsers() {
       try {
         const res = await fetch(
           `https://blog-app-f85t.onrender.com/api/user/getusers`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
         );
 
         const data = await res.json();
@@ -43,6 +49,12 @@ function DashUsers() {
     try {
       const res = await fetch(
         `https://blog-app-f85t.onrender.com/api/user/getusers?startIndex=${startIndex}`,
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       if (res.ok) {
         const data = await res.json(); // Parse response data
@@ -62,6 +74,10 @@ function DashUsers() {
         `https://blog-app-f85t.onrender.com/api/user/deleteuser/${userIdToDelete}`,
         {
           method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       );
       const data = await res.json();

@@ -81,6 +81,7 @@ export default function DashProfile() {
         `https://blog-app-f85t.onrender.com/api/user/update/${getUserId()}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         },
@@ -142,6 +143,10 @@ export default function DashProfile() {
         `https://blog-app-f85t.onrender.com/api/user/deleteuser/${getUserId()}`,
         {
           method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       );
       const data = await res.json();
@@ -161,6 +166,10 @@ export default function DashProfile() {
         "https://blog-app-f85t.onrender.com/api/auth/signout",
         {
           method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
       );
 

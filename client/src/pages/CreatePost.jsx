@@ -67,6 +67,7 @@ function CreatePost() {
         "https://blog-app-f85t.onrender.com/api/posts/create",
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -91,6 +92,12 @@ function CreatePost() {
     const fetchCategories = async () => {
       const res = await fetch(
         "https://blog-app-f85t.onrender.com/api/posts/categories",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       const categories = await res.json();
       setCategories(categories);

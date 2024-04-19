@@ -5,19 +5,18 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
+  console.log("Error:", err.message, "Stack:", err.stack);
   const statusCode = err.statusCode ? err.statusCode : 500;
   if (err.name === "MongoServerError" && err.code === 11000) {
     res.status(400);
   } else {
     res.status(statusCode);
   }
-
   res.json({
     success: res.status === 200 ? true : false,
     message: err?.message,
     stack: err?.stack,
   });
-  console.log("Error:", err.message, "Stack:", err.stack);
 };
 
 module.exports = { errorHandler, notFound };

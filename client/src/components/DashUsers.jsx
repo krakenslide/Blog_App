@@ -18,12 +18,15 @@ function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`${process.env.Prod_API}/api/user/getusers`, {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
+        const res = await fetch(
+          `${import.meta.env.Prod_API}/api/user/getusers`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         const data = await res.json();
         if (res.ok) {
@@ -45,7 +48,7 @@ function DashUsers() {
     const startIndex = users.length;
     try {
       const res = await fetch(
-        `${process.env.Prod_API}/api/user/getusers?startIndex=${startIndex}`,
+        `${import.meta.env.Prod_API}/api/user/getusers?startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -68,7 +71,7 @@ function DashUsers() {
   const handleDeleteUser = async () => {
     try {
       const res = await fetch(
-        `${process.env.Prod_API}/api/user/deleteuser/${userIdToDelete}`,
+        `${import.meta.env.Prod_API}/api/user/deleteuser/${userIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",

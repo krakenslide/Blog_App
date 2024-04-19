@@ -25,7 +25,7 @@ export default function DashSidebar() {
   }, [location.search]);
   const handleSignOut = async () => {
     try {
-      const res = await fetch(`${process.env.Prod_API}/api/auth/signout`, {
+      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signout`, {
         method: "POST",
         credentials: "include",
         headers: {

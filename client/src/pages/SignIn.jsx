@@ -29,7 +29,7 @@ export default function Signin() {
 
   const cookieTest = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${process.env.Prod_API}/api/auth/cookietest`, {
+    const res = await fetch(`${import.meta.env.Prod_API}/api/auth/cookietest`, {
       credentials: "include",
       method: "POST",
     });
@@ -42,7 +42,7 @@ export default function Signin() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch(`${process.env.Prod_API}/api/auth/signin`, {
+      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signin`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

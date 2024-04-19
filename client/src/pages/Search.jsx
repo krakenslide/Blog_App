@@ -32,7 +32,7 @@ function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `${process.env.Prod_API}/api/posts/getposts?${searchQuery}`,
+        `${import.meta.env.Prod_API}/api/posts/getposts?${searchQuery}`,
       );
       if (!res.ok) {
         setLoading(false);
@@ -69,7 +69,9 @@ function Search() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch(`${process.env.Prod_API}/api/posts/categories`);
+      const res = await fetch(
+        `${import.meta.env.Prod_API}/api/posts/categories`,
+      );
       const categories = await res.json();
       setCategories(categories);
     };
@@ -93,7 +95,7 @@ function Search() {
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
     const res = await fetch(
-      `${process.env.Prod_API}/api/posts/getposts?${searchQuery}`,
+      `${import.meta.env.Prod_API}/api/posts/getposts?${searchQuery}`,
     );
     const data = await res.json();
     if (!res.ok) {

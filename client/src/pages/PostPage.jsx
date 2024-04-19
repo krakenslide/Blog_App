@@ -23,7 +23,7 @@ function PostPage() {
       try {
         setLoading(true);
         const res = await fetch(
-          `${process.env.Prod_API}/api/posts/getposts?slug=${postslug}`,
+          `${import.meta.env.Prod_API}/api/posts/getposts?slug=${postslug}`,
         );
         const data = await res.json();
         if (!res.ok) {
@@ -47,7 +47,7 @@ function PostPage() {
     try {
       const fetchRecentPosts = async () => {
         const res = await fetch(
-          `${process.env.Prod_API}/api/posts/getposts?limit=3`,
+          `${import.meta.env.Prod_API}/api/posts/getposts?limit=3`,
         );
         const data = await res.json();
         if (res.ok) {

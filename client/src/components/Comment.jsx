@@ -18,7 +18,7 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
     const getuser = async () => {
       try {
         const res = await fetch(
-          `${process.env.Prod_API}/api/user/getuserpublicroute/${comment.userId}`,
+          `${import.meta.env.Prod_API}/api/user/getuserpublicroute/${comment.userId}`,
         );
         const data = await res.json();
         if (res.ok) {
@@ -52,7 +52,7 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        `${process.env.Prod_API}/api/comment/editcomment/${comment._id}`,
+        `${import.meta.env.Prod_API}/api/comment/editcomment/${comment._id}`,
         {
           method: "PUT",
           credentials: "include",

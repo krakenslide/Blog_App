@@ -28,7 +28,7 @@ function UpdatePost() {
     try {
       const fetchPosts = async () => {
         const res = await fetch(
-          `${process.env.Prod_API}/api/posts/getposts?postId=${postId}`,
+          `${import.meta.env.Prod_API}/api/posts/getposts?postId=${postId}`,
           {
             credentials: "include",
           },
@@ -94,7 +94,7 @@ function UpdatePost() {
     try {
       // Fetch the existing post data from the server
       const existingPostRes = await fetch(
-        `${process.env.Prod_API}/api/posts/getposts?postId=${postId}`,
+        `${import.meta.env.Prod_API}/api/posts/getposts?postId=${postId}`,
         { credentials: "include" },
       );
       const existingPostData = await existingPostRes.json();
@@ -111,7 +111,7 @@ function UpdatePost() {
       }
 
       const res = await fetch(
-        `${process.env.Prod_API}/api/posts/updatepost/${postId}`,
+        `${import.meta.env.Prod_API}/api/posts/updatepost/${postId}`,
         {
           method: "PUT",
           credentials: "include",

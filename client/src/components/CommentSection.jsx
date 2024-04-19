@@ -22,18 +22,21 @@ function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch(`${process.env.Prod_API}/api/comment/create`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `${import.meta.env.Prod_API}/api/comment/create`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: comment,
+            postId,
+            userId: currentUser._id,
+          }),
         },
-        body: JSON.stringify({
-          content: comment,
-          postId,
-          userId: currentUser._id,
-        }),
-      });
+      );
       const data = await res.json();
       if (res.ok) {
         setComment("");
@@ -50,7 +53,7 @@ function CommentSection({ postId }) {
     const getComments = async () => {
       try {
         const res = await fetch(
-          `${process.env.Prod_API}/api/comment/getcomments/${postId}`,
+          `${import.meta.env.Prod_API}/api/comment/getcomments/${postId}`,
         );
         if (res.ok) {
           const data = await res.json();
@@ -70,7 +73,7 @@ function CommentSection({ postId }) {
         return;
       }
       const res = await fetch(
-        `${process.env.Prod_API}/api/comment/likecomment/${commentId}`,
+        `${import.meta.env.Prod_API}/api/comment/likecomment/${commentId}`,
         {
           credentials: "include",
           method: "PUT",
@@ -110,7 +113,7 @@ function CommentSection({ postId }) {
         return;
       }
       const res = await fetch(
-        `${process.env.Prod_API}/api/comment/deletecomment/${commentId}`,
+        `${import.meta.env.Prod_API}/api/comment/deletecomment/${commentId}`,
         {
           method: "DELETE",
           credentials: "include",

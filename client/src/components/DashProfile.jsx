@@ -78,7 +78,7 @@ export default function DashProfile() {
     try {
       dispatch(updateStart());
       const res = await fetch(
-        `${process.env.Prod_API}/api/user/update/${getUserId()}`,
+        `${import.meta.env.Prod_API}/api/user/update/${getUserId()}`,
         {
           method: "PUT",
           credentials: "include",
@@ -140,7 +140,7 @@ export default function DashProfile() {
       dispatch(deleteUserStart());
       console.log(getUserId());
       const res = await fetch(
-        `${process.env.Prod_API}/api/user/deleteuser/${getUserId()}`,
+        `${import.meta.env.Prod_API}/api/user/deleteuser/${getUserId()}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -163,7 +163,7 @@ export default function DashProfile() {
 
   const handleSignOut = async () => {
     try {
-      const res = await fetch(`${process.env.Prod_API}/api/auth/signout`, {
+      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signout`, {
         method: "POST",
         credentials: "include",
         headers: {

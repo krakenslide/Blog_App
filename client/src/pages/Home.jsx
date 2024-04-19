@@ -19,7 +19,7 @@ export default function Home() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `${process.env.Prod_API}/api/posts/getposts?limit=9`,
+          `${import.meta.env.Prod_API}/api/posts/getposts?limit=9`,
         );
         const data = await res.json();
         setPosts(data.posts);

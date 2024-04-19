@@ -23,7 +23,7 @@ export default function Header() {
   const { theme } = useSelector((state) => state.theme);
   const handleSignOut = async () => {
     try {
-      const res = await fetch(`${process.env.Prod_API}/api/auth/signout`, {
+      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signout`, {
         credentials: "include",
         method: "POST",
       });

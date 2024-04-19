@@ -28,7 +28,7 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `${process.env.Prod_API}/api/user/getusers?limit=5`,
+            `${import.meta.env.Prod_API}/api/user/getusers?limit=5`,
             {
               credentials: "include",
               headers: {
@@ -52,7 +52,7 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `${process.env.Prod_API}/api/posts/getposts?limit=5`,
+            `${import.meta.env.Prod_API}/api/posts/getposts?limit=5`,
             {
               credentials: "include",
               headers: {
@@ -76,7 +76,7 @@ function DashboardComp() {
       if (currentUser.isAdmin) {
         try {
           const res = await fetch(
-            `${process.env.Prod_API}/api/comment/getcommentsdash?limit=5`,
+            `${import.meta.env.Prod_API}/api/comment/getcommentsdash?limit=5`,
             {
               credentials: "include",
               headers: {
@@ -88,7 +88,7 @@ function DashboardComp() {
           const data = await res.json();
           const userPromises = data.comments.map(async (comment) => {
             const userRes = await fetch(
-              `${process.env.Prod_API}/api/user/getuserpublicroute/${comment.userId}`,
+              `${import.meta.env.Prod_API}/api/user/getuserpublicroute/${comment.userId}`,
             );
             if (userRes.ok) {
               const userData = await userRes.json();

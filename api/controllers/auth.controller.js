@@ -23,6 +23,7 @@ const signup = asyncHandler(async (req, res, next) => {
 
 const signin = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
+  const oneYear = 365 * 24 * 60 * 60 * 1000;
   try {
     const findUser = await User.findOne({ email: email });
     if (!findUser || !(await findUser.isPasswordMatched(password))) {
@@ -41,6 +42,7 @@ const signin = asyncHandler(async (req, res, next) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       path: "/",
+      expires: new Date(Date.now() + oneYear),
       sameSite: "none",
     });
     res.json({
@@ -96,11 +98,10 @@ const googleSignIn = asyncHandler(async (req, res, next) => {
 
 const signOut = asyncHandler(async (req, res) => {
   try {
-    res.status(200).json("User has been signed out.");
-    // res
-    //   .clearCookie("accessToken")
-    //   .status(200)
-    //   .json("User has been signed out.");
+    res
+      .clearCookie("accessToken")
+      .status(200)
+      .json("User has been signed out.");
   } catch (error) {
     throw new Error(error);
   }

@@ -96,10 +96,11 @@ const googleSignIn = asyncHandler(async (req, res, next) => {
 
 const signOut = asyncHandler(async (req, res) => {
   try {
-    res
-      .clearCookie("accessToken")
-      .status(200)
-      .json("User has been signed out.");
+    res.status(200).json("User has been signed out.");
+    // res
+    //   .clearCookie("accessToken")
+    //   .status(200)
+    //   .json("User has been signed out.");
   } catch (error) {
     throw new Error(error);
   }

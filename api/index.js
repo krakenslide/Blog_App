@@ -44,6 +44,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/comment", commentRoutes);
 
 app.use("*", (req, res, next) => {
+  console.log(req.url);
   const error = new Error("Route not found");
   error.statusCode = 404;
   next(error);

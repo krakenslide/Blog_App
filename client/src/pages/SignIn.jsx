@@ -34,14 +34,12 @@ export default function Signin() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/auth/signin",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        },
-      );
+      const res = await fetch("http://localhost:3000/api/auth/signin", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));

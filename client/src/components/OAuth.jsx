@@ -20,6 +20,7 @@ export default function OAuth() {
         "https://blog-app-f85t.onrender.com/api/auth/google",
         {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: resultsFromGoogle.user.displayName,

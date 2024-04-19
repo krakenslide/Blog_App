@@ -63,17 +63,14 @@ function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        "https://blog-app-8j8t.onrender.com/api/posts/create",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const res = await fetch("/api/posts/create", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
@@ -90,15 +87,12 @@ function CreatePost() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch(
-        "https://blog-app-8j8t.onrender.com/api/posts/categories",
-        {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch("/api/posts/categories", {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
       const categories = await res.json();
       setCategories(categories);
     };

@@ -18,7 +18,7 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
     const getuser = async () => {
       try {
         const res = await fetch(
-          `${process.env.DOMAIN}/api/user/getuserpublicroute/${comment.userId}`,
+          `/api/user/getuserpublicroute/${comment.userId}`,
         );
         const data = await res.json();
         if (res.ok) {
@@ -51,18 +51,15 @@ function Comment({ comment, onLike, onEdit, onDelete }) {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/comment/editcomment/${comment._id}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-          },
-          body: JSON.stringify({ content: editedContent }),
+      const res = await fetch(`/api/comment/editcomment/${comment._id}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
         },
-      );
+        body: JSON.stringify({ content: editedContent }),
+      });
       await res.json();
       if (res.ok) {
         setIsEditing(false);

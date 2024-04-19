@@ -22,21 +22,18 @@ function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch(
-        "https://blog-app-8j8t.onrender.com/api/comment/create",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            content: comment,
-            postId,
-            userId: currentUser._id,
-          }),
+      const res = await fetch("/api/comment/create", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          content: comment,
+          postId,
+          userId: currentUser._id,
+        }),
+      });
       const data = await res.json();
       if (res.ok) {
         setComment("");
@@ -52,9 +49,7 @@ function CommentSection({ postId }) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(
-          `https://blog-app-8j8t.onrender.com/api/comment/getcomments/${postId}`,
-        );
+        const res = await fetch(`/api/comment/getcomments/${postId}`);
         if (res.ok) {
           const data = await res.json();
           setComments(data);
@@ -72,13 +67,10 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/comment/likecomment/${commentId}`,
-        {
-          credentials: "include",
-          method: "PUT",
-        },
-      );
+      const res = await fetch(`/api/comment/likecomment/${commentId}`, {
+        credentials: "include",
+        method: "PUT",
+      });
       if (res.ok) {
         const data = await res.json();
         setComments(
@@ -112,13 +104,10 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/comment/deletecomment/${commentId}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        },
-      );
+      const res = await fetch(`/api/comment/deletecomment/${commentId}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
       if (res.ok) {
         const data = await res.json();
         setComments(comments.filter((comment) => comment._id !== commentId));

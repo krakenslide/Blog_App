@@ -77,15 +77,12 @@ export default function DashProfile() {
     }
     try {
       dispatch(updateStart());
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/user/update/${getUserId()}`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        },
-      );
+      const res = await fetch(`/api/user/update/${getUserId()}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
       if (!res.ok) {
         dispatch(updateFailure(data.message));
@@ -139,17 +136,14 @@ export default function DashProfile() {
     try {
       dispatch(deleteUserStart());
       console.log(getUserId());
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/user/deleteuser/${getUserId()}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-          },
+      const res = await fetch(`/api/user/deleteuser/${getUserId()}`, {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
         },
-      );
+      });
       const data = await res.json();
       if (!res.ok) {
         dispatch(deleteUserFailure(data.message));
@@ -163,17 +157,14 @@ export default function DashProfile() {
 
   const handleSignOut = async () => {
     try {
-      const res = await fetch(
-        "https://blog-app-8j8t.onrender.com/api/auth/signout",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-          },
+      const res = await fetch("/api/auth/signout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
         },
-      );
+      });
 
       const data = await res.json();
       if (!res.ok) {

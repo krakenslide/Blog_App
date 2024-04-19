@@ -31,9 +31,7 @@ function Search() {
     const fetchPosts = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/posts/getposts?${searchQuery}`,
-      );
+      const res = await fetch(`/api/posts/getposts?${searchQuery}`);
       if (!res.ok) {
         setLoading(false);
         return;
@@ -69,9 +67,7 @@ function Search() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch(
-        "https://blog-app-8j8t.onrender.com/api/posts/categories",
-      );
+      const res = await fetch("/api/posts/categories");
       const categories = await res.json();
       setCategories(categories);
     };
@@ -94,9 +90,7 @@ function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(
-      `https://blog-app-8j8t.onrender.com/api/posts/getposts?${searchQuery}`,
-    );
+    const res = await fetch(`/api/posts/getposts?${searchQuery}`);
     const data = await res.json();
     if (!res.ok) {
       return;

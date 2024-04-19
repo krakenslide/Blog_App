@@ -18,15 +18,12 @@ function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(
-          `https://blog-app-8j8t.onrender.com/api/user/getusers`,
-          {
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
+        const res = await fetch(`/api/user/getusers`, {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+        });
 
         const data = await res.json();
         if (res.ok) {
@@ -47,15 +44,12 @@ function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/user/getusers?startIndex=${startIndex}`,
-        {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`/api/user/getusers?startIndex=${startIndex}`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
       if (res.ok) {
         const data = await res.json(); // Parse response data
         setUsers((prev) => [...prev, ...data.users]);
@@ -70,16 +64,13 @@ function DashUsers() {
 
   const handleDeleteUser = async () => {
     try {
-      const res = await fetch(
-        `https://blog-app-8j8t.onrender.com/api/user/deleteuser/${userIdToDelete}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`/api/user/deleteuser/${userIdToDelete}`, {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
       const data = await res.json();
       if (res.ok) {
         setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));

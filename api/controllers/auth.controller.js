@@ -122,4 +122,4 @@ const signOut = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { signup, signin, googleSignIn, signOut, cookieTest };
+module.exports = { signup, signin, googleSignIn, signOut };

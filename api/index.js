@@ -32,7 +32,7 @@ app.use(
   }),
 );
 
-app.use(":id/api/healthcheck", (req, res, next) => {
+app.use("/api/healthcheck", (req, res, next) => {
   res.status(200).json({ message: "HealthCheck Success" });
 });
 

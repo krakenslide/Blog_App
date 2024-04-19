@@ -38,13 +38,7 @@ const signin = asyncHandler(async (req, res, next) => {
       },
     );
     const { password: omitPassword, ...userData } = findUser.toObject();
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: true,
-      path: "/",
-    });
-
-    res.json({
+    res.cookie("accessToken", accessToken, { httpOnly: true, path: "/" }).json({
       success: true,
       findUser: userData,
       token: accessToken,

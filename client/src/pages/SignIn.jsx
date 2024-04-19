@@ -27,17 +27,6 @@ export default function Signin() {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const cookieTest = async (e) => {
-    e.preventDefault();
-    const res = await fetch(
-      `https://blog-app-8j8t.onrender.com/api/auth/cookietest`,
-      {
-        credentials: "include",
-        method: "POST",
-      },
-    );
-    const data = await res.json();
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
@@ -162,7 +151,6 @@ export default function Signin() {
           </Button>
           <OAuth />
         </motion.form>
-        <Button onClick={cookieTest}>Cookie Test</Button>
         <motion.div
           className="flex justify-between items-center text-gray-700 dark:text-gray-300 mt-4"
           initial={{ y: 20, opacity: 0 }}

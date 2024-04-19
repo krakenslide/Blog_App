@@ -21,6 +21,7 @@ function DashComments() {
           `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash`,
           {
             credentials: "include",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
               "Access-Control-Allow-Credentials": true,

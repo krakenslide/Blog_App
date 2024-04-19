@@ -21,6 +21,7 @@ function DashUsers() {
         const res = await fetch(
           `https://blog-app-8j8t.onrender.com/api/user/getusers`,
           {
+            method: "POST",
             credentials: "include",
             headers: {
               "Content-Type": "application/json",
@@ -50,6 +51,7 @@ function DashUsers() {
       const res = await fetch(
         `https://blog-app-8j8t.onrender.com/api/user/getusers?startIndex=${startIndex}`,
         {
+          method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",

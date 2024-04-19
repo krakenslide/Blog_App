@@ -27,7 +27,7 @@ mongoose
 app.use(
   cors({
     origin: [
-      "https://blog-app-f85t.onrender.com",
+      "https://blog-app-xi-one.vercel.app",
       "https://blog-ekl5wlui8-ankits-projects-18edb47b.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],

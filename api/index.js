@@ -26,13 +26,13 @@ mongoose
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://blog-app-8j8t.onrender.com"],
+    origin: "https://blog-app-f85t.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
 );
 
-app.use("/api/healthcheck", (req, res, next) => {
+app.use(":id/api/healthcheck", (req, res, next) => {
   res.status(200).json({ message: "HealthCheck Success" });
 });
 

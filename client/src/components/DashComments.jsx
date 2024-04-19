@@ -18,7 +18,7 @@ function DashComments() {
     const fetchComment = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.Prod_API}/api/comment/getcommentsdash`,
+          `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash`,
           {
             credentials: "include",
             headers: {
@@ -48,7 +48,7 @@ function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `${import.meta.env.Prod_API}/api/comment/getcommentsdash?startIndex=${startIndex}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/getcommentsdash?startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -73,7 +73,7 @@ function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `${import.meta.env.Prod_API}/api/comment/deletecomment/${commentIdToDelete}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/deletecomment/${commentIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",

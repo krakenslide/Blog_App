@@ -23,10 +23,13 @@ export default function Header() {
   const { theme } = useSelector((state) => state.theme);
   const handleSignOut = async () => {
     try {
-      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signout`, {
-        credentials: "include",
-        method: "POST",
-      });
+      const res = await fetch(
+        `https://blog-app-8j8t.onrender.com/api/auth/signout`,
+        {
+          credentials: "include",
+          method: "POST",
+        },
+      );
 
       const data = await res.json();
       if (!res.ok) {

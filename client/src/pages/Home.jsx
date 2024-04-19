@@ -19,7 +19,7 @@ export default function Home() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.Prod_API}/api/posts/getposts?limit=9`,
+          `https://blog-app-8j8t.onrender.com/api/posts/getposts?limit=9`,
         );
         const data = await res.json();
         setPosts(data.posts);

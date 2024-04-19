@@ -19,7 +19,7 @@ function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.Prod_API}/api/posts/getposts?userId=${currentUser._id}`,
+          `https://blog-app-8j8t.onrender.com/api/posts/getposts?userId=${currentUser._id}`,
           {
             credentials: "include",
             headers: {
@@ -49,7 +49,7 @@ function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `${import.meta.env.Prod_API}/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
+        `https://blog-app-8j8t.onrender.com/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -74,7 +74,7 @@ function DashPosts() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `${import.meta.env.Prod_API}/api/posts/deletepost/${postIdToDelete}`,
+        `https://blog-app-8j8t.onrender.com/api/posts/deletepost/${postIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",

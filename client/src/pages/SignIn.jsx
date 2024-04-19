@@ -29,10 +29,13 @@ export default function Signin() {
 
   const cookieTest = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${import.meta.env.Prod_API}/api/auth/cookietest`, {
-      credentials: "include",
-      method: "POST",
-    });
+    const res = await fetch(
+      `https://blog-app-8j8t.onrender.com/api/auth/cookietest`,
+      {
+        credentials: "include",
+        method: "POST",
+      },
+    );
     const data = await res.json();
   };
   const handleSubmit = async (e) => {
@@ -42,12 +45,15 @@ export default function Signin() {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch(`${import.meta.env.Prod_API}/api/auth/signin`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://blog-app-8j8t.onrender.com/api/auth/signin`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        },
+      );
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));

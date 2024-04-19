@@ -21,6 +21,15 @@ const signup = asyncHandler(async (req, res, next) => {
   }
 });
 
+const cookieTest = asyncHandler(async (req, res, next) => {
+  res.cookie("testing-cookie", "testing-cookie", {
+    httpOnly: true,
+    path: "/",
+    expires: new Date(Date.now() + oneYear),
+  });
+  res.json("Testing").status(200);
+});
+
 const signin = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const oneYear = 365 * 24 * 60 * 60 * 1000;
@@ -119,4 +128,4 @@ const signOut = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { signup, signin, googleSignIn, signOut };
+module.exports = { signup, signin, googleSignIn, signOut, cookieTest };

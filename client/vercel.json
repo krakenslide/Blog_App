@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api",
-      "destination": "https://blog-app-8j8t.onrender.com"
+      "source": "/api/:match",
+      "destination": "https://blog-app-8j8t.onrender.com/api/:match"
     },
     {
       "source": "/(.*)",

@@ -88,7 +88,7 @@ function DashboardComp() {
           const data = await res.json();
           const userPromises = data.comments.map(async (comment) => {
             const userRes = await fetch(
-              `https://blog-app-f85t.onrender.com/api/user/getuserpublicroute/${comment.userId}`,
+              `https://blog-app-8j8t.onrender.com/api/user/getuserpublicroute/${comment.userId}`,
             );
             if (userRes.ok) {
               const userData = await userRes.json();

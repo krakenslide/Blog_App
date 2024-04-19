@@ -70,7 +70,7 @@ function Search() {
   useEffect(() => {
     const fetchCategories = async () => {
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/posts/categories",
+        "https://blog-app-8j8t.onrender.com/api/posts/categories",
       );
       const categories = await res.json();
       setCategories(categories);
@@ -95,7 +95,7 @@ function Search() {
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
     const res = await fetch(
-      `https://blog-app-f85t.onrender.com/api/posts/getposts?${searchQuery}`,
+      `https://blog-app-8j8t.onrender.com/api/posts/getposts?${searchQuery}`,
     );
     const data = await res.json();
     if (!res.ok) {

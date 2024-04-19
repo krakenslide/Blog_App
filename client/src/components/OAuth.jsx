@@ -17,7 +17,7 @@ export default function OAuth() {
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
       const res = await fetch(
-        "https://blog-app-f85t.onrender.com/api/auth/google",
+        "https://blog-app-8j8t.onrender.com/api/auth/google",
         {
           method: "POST",
           credentials: "include",

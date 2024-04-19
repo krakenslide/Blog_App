@@ -113,7 +113,7 @@ function CommentSection({ postId }) {
         return;
       }
       const res = await fetch(
-        `https://blog-app-f85t.onrender.com/api/comment/deletecomment/${commentId}`,
+        `https://blog-app-8j8t.onrender.com/api/comment/deletecomment/${commentId}`,
         {
           method: "DELETE",
           credentials: "include",

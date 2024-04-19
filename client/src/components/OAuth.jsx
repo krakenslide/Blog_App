@@ -16,7 +16,7 @@ export default function OAuth() {
     provider.setCustomParameters({ prompt: "select_account" }); //switch gmail accounts when you try to sign in the next time instead of it directly logging you in.
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
-      const res = await fetch("/api/auth/google", {
+      const res = await fetch(`${process.env.Prod_API}/api/auth/google`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

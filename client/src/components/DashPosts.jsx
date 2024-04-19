@@ -19,7 +19,7 @@ function DashPosts() {
     const fetchPosts = async () => {
       try {
         const res = await fetch(
-          `/api/posts/getposts?userId=${currentUser._id}`,
+          `${process.env.Prod_API}/api/posts/getposts?userId=${currentUser._id}`,
           {
             credentials: "include",
             headers: {
@@ -49,7 +49,7 @@ function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
+        `${process.env.Prod_API}/api/posts/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -73,14 +73,17 @@ function DashPosts() {
   const handleDeletePost = async () => {
     setShowModal(false);
     try {
-      const res = await fetch(`/api/posts/deletepost/${postIdToDelete}`, {
-        method: "DELETE",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
+      const res = await fetch(
+        `${process.env.Prod_API}/api/posts/deletepost/${postIdToDelete}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+          },
         },
-      });
+      );
 
       const data = await res.json();
       if (!res.ok) {

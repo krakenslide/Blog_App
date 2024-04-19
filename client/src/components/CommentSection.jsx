@@ -22,7 +22,7 @@ function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch("/api/comment/create", {
+      const res = await fetch(`${process.env.Prod_API}/api/comment/create`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -49,7 +49,9 @@ function CommentSection({ postId }) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`/api/comment/getcomments/${postId}`);
+        const res = await fetch(
+          `${process.env.Prod_API}/api/comment/getcomments/${postId}`,
+        );
         if (res.ok) {
           const data = await res.json();
           setComments(data);
@@ -67,10 +69,13 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(`/api/comment/likecomment/${commentId}`, {
-        credentials: "include",
-        method: "PUT",
-      });
+      const res = await fetch(
+        `${process.env.Prod_API}/api/comment/likecomment/${commentId}`,
+        {
+          credentials: "include",
+          method: "PUT",
+        },
+      );
       if (res.ok) {
         const data = await res.json();
         setComments(
@@ -104,10 +109,13 @@ function CommentSection({ postId }) {
         navigate("/signin");
         return;
       }
-      const res = await fetch(`/api/comment/deletecomment/${commentId}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${process.env.Prod_API}/api/comment/deletecomment/${commentId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        },
+      );
       if (res.ok) {
         const data = await res.json();
         setComments(comments.filter((comment) => comment._id !== commentId));

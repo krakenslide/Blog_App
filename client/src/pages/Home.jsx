@@ -18,7 +18,9 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("/api/posts/getposts?limit=9");
+        const res = await fetch(
+          `${process.env.Prod_API}/api/posts/getposts?limit=9`,
+        );
         const data = await res.json();
         setPosts(data.posts);
       } catch (error) {

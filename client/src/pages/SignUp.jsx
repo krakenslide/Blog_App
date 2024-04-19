@@ -31,7 +31,7 @@ export default function Signup() {
       setLoading(true);
       setErrorMessage(null);
       //add a proxy to fetch the address
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch(`${process.env.Prod_API}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

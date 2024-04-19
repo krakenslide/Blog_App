@@ -63,7 +63,7 @@ function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/posts/create", {
+      const res = await fetch(`${process.env.Prod_API}/api/posts/create`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -87,7 +87,7 @@ function CreatePost() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await fetch("/api/posts/categories", {
+      const res = await fetch(`${process.env.Prod_API}/api/posts/categories`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",

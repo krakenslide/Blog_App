@@ -17,13 +17,16 @@ function DashComments() {
   useEffect(() => {
     const fetchComment = async () => {
       try {
-        const res = await fetch(`/api/comment/getcommentsdash`, {
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
+        const res = await fetch(
+          `${process.env.Prod_API}/api/comment/getcommentsdash`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": true,
+            },
           },
-        });
+        );
 
         const data = await res.json();
         if (res.ok) {
@@ -45,7 +48,7 @@ function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/comment/getcommentsdash?startIndex=${startIndex}`,
+        `${process.env.Prod_API}/api/comment/getcommentsdash?startIndex=${startIndex}`,
         {
           credentials: "include",
           headers: {
@@ -70,7 +73,7 @@ function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/comment/deletecomment/${commentIdToDelete}`,
+        `${process.env.Prod_API}/api/comment/deletecomment/${commentIdToDelete}`,
         {
           method: "DELETE",
           credentials: "include",

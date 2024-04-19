@@ -22,7 +22,9 @@ function PostPage() {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/posts/getposts?slug=${postslug}`);
+        const res = await fetch(
+          `${process.env.Prod_API}/api/posts/getposts?slug=${postslug}`,
+        );
         const data = await res.json();
         if (!res.ok) {
           setError(true);
@@ -44,7 +46,9 @@ function PostPage() {
   useEffect(() => {
     try {
       const fetchRecentPosts = async () => {
-        const res = await fetch(`/api/posts/getposts?limit=3`);
+        const res = await fetch(
+          `${process.env.Prod_API}/api/posts/getposts?limit=3`,
+        );
         const data = await res.json();
         if (res.ok) {
           setRecentPosts(data.posts);

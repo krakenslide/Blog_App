@@ -41,8 +41,6 @@ const signin = asyncHandler(async (req, res, next) => {
     const { password: omitPassword, ...userData } = findUser.toObject();
     res
       .cookie("accessToken", accessToken, {
-        httpOnly: true,
-        path: "/",
         expires: new Date(Date.now() + oneYear),
       })
       .cookie("testing cookie 1", "testing", {
@@ -51,10 +49,15 @@ const signin = asyncHandler(async (req, res, next) => {
       })
       .cookie("testing cookie 2", "testing", {
         httpOnly: true,
+        secure: true,
+        path: "/",
+        sameSite: "None",
       })
       .cookie("testingCookie4", "testing", {
         httpOnly: true,
+        secure: true,
         path: "/",
+        sameSite: "None",
         expires: 0,
       });
     res.json({

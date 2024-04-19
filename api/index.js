@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://blog-693xav1be-ankits-projects-18edb47b.vercel.app/",
+      "https://blog-693xav1be-ankits-projects-18edb47b.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,

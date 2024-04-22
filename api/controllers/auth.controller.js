@@ -58,6 +58,7 @@ const signin = asyncHandler(async (req, res, next) => {
 
 const googleSignIn = asyncHandler(async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
+  const oneYear = 365 * 24 * 60 * 60 * 1000;
   try {
     const user = await User.findOne({ email: email });
     if (user) {
@@ -81,7 +82,7 @@ const googleSignIn = asyncHandler(async (req, res, next) => {
         profilePicture: googlePhotoUrl,
       });
       await newUser.save();
-      const token = jwt.sign(
+      const accessToken = jwt.sign(
         { id: newUser._id, isAdmin: newUser.isAdmin },
         process.env.JWT_SECRET,
       );

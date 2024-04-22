@@ -86,10 +86,13 @@ const googleSignIn = asyncHandler(async (req, res, next) => {
         process.env.JWT_SECRET,
       );
       const { password: omitPassword, ...userData } = newUser.toObject();
-      res
-        .status(200)
-        .cookie("accessToken", token, { httpOnly: true })
-        .json(userData);
+      res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        expires: new Date(Date.now() + oneYear),
+      });
+      res.status(200).json(userData);
     }
   } catch (error) {
     next(error);

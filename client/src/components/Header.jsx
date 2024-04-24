@@ -158,15 +158,36 @@ export default function Header() {
         <Navbar.Toggle />
       </motion.div>
       <Navbar.Collapse>
-        <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/">Home</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about">About</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link to="/projects">Projects</Link>
-        </Navbar.Link>
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <Navbar.Link active={path === "/"} as={"div"}>
+            <Link to="/">Home</Link>
+          </Navbar.Link>
+        </div>
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigate("/about");
+          }}
+        >
+          <Navbar.Link active={path === "/about"} as={"div"}>
+            <Link to="/about">About</Link>
+          </Navbar.Link>
+        </div>
+        <div
+          className="cursor-pointer"
+          onClick={() => {
+            navigate("/projects");
+          }}
+        >
+          <Navbar.Link active={path === "/projects"} as={"div"}>
+            <Link to="/projects">Projects</Link>
+          </Navbar.Link>
+        </div>
       </Navbar.Collapse>
     </Navbar>
   );

@@ -62,7 +62,7 @@ export default function About() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-center"
+          className="text-center p-3"
         >
           <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-gray-500">
             About Me
@@ -111,7 +111,7 @@ export default function About() {
 
       {/* Tech Stack Section */}
       <motion.div
-        className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"
+        className="bg-cover bg-center min-h-screen flex flex-col items-center justify-center text-white relative"
         style={{
           backgroundImage:
             theme === "dark"

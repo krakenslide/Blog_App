@@ -22,6 +22,8 @@ function UpdatePost() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [formImage, setFormImage] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [isNewCategory, setIsNewCategory] = useState(false);
   const { postId } = useParams();
 
   useEffect(() => {
@@ -51,6 +53,23 @@ function UpdatePost() {
       console.log(error.message);
     }
   }, [postId]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await fetch(
+        `https://blog-app-8j8t.onrender.com/api/posts/categories`,
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      const categories = await res.json();
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, []);
 
   const handleUploadImage = async () => {
     try {
@@ -159,17 +178,34 @@ function UpdatePost() {
             value={formData.title}
           />
           <Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
-            value={formData.category}
+            onChange={(e) => {
+              const value = e.target.value;
+              setFormData({ ...formData, category: value });
+              setIsNewCategory(value === "new_category");
+            }}
+            defaultValue="uncategorized"
           >
-            <option value="uncategorized">Select a category</option>
-            <option value="javascript">Javascript</option>
-            <option value="reactjs">ReactJS</option>
-            <option value="nodejs">NodeJS</option>
-            <option value="expressjs">ExpressJS</option>
+            <option value="uncategorized">Select category</option>
+            {categories &&
+              categories.length > 0 &&
+              categories.map((category, index) => (
+                <option key={index} value={category.category}>
+                  {category.category}
+                </option>
+              ))}
+            <option value="new_category">New Category</option>
           </Select>
+
+          {isNewCategory && (
+            <TextInput
+              type="text"
+              placeholder="Enter new category"
+              required
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+            />
+          )}
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput

@@ -8,6 +8,7 @@ import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/userSlice.js";
 import { motion } from "framer-motion";
 import { GiKrakenTentacle } from "react-icons/gi";
+import { useMediaQuery } from "react-responsive";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ export default function Header() {
   if (currentUser?.findUser) {
     currentUser = currentUser.findUser;
   }
-
+  const isXs = useMediaQuery({ query: "(max-width: 640px)" });
+  console.log(isXs);
   const { theme } = useSelector((state) => state.theme);
   const handleSignOut = async () => {
     try {
@@ -89,7 +91,7 @@ export default function Header() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold dark:text-white"
           >
-            Standard Kraken Blog
+            {isXs ? "SKB" : "Standard Kraken Board"}
           </motion.span>
         </motion.div>
       </Link>

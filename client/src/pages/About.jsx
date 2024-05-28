@@ -35,7 +35,7 @@ export default function About() {
   const heroImageLight =
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzV5cnR2ZW9hcDgzYnlpNDZ6NTYzdzJwd2JnNDAwemZyMDgwdG84bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vReTmBHnPsC4oHS/giphy.gif";
   const xsImageDark =
-    "https://media4.giphy.com/media/SSWHtGBHHJjvZwL7Jx/giphy.webp?cid=ecf05e47c0kr4ady8u3k26pa3ihkgiwxol5pwm53hhcy4jja&ep=v1_gifs_search&rid=giphy.webp&ct=g";
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDg4MWhwbXhlcnl3OTVpNG9yczRreWRueXYwazl3czVtcnQ3bHhlaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fs6OGJ4Eb3ajC/giphy.gif";
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
   const isXs = useMediaQuery({ query: "(max-width: 640px)" });
@@ -52,7 +52,9 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? `url(${heroImageDark})`
+              ? isXs
+                ? `url(${xsImageDark})`
+                : `url(${heroImageDark})}`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -119,7 +121,9 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? `url(${heroImageDark})`
+              ? isXs
+                ? `url(${xsImageDark})`
+                : `url(${heroImageDark})}`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -208,7 +212,9 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? `url(${heroImageDark})`
+              ? isXs
+                ? `url(${xsImageDark})`
+                : `url(${heroImageDark})}`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",

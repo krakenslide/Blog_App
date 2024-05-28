@@ -6,7 +6,7 @@ const createComment = asyncHandler(async (req, res, next) => {
     const { content, postId, userId } = req.body;
     if (userId !== req.user.id) {
       const error = new Error("You are not allowed to comment.");
-      error.status(403);
+      error.statusCode = 403;
       throw error;
     }
 
@@ -40,7 +40,7 @@ const likeComment = asyncHandler(async (req, res, next) => {
     const comment = await CommentModel.findById(req.params.commentId);
     if (!comment) {
       const error = new Error("Comment not found.");
-      error.statusCode(404);
+      error.statusCode = 404;
       throw error;
     }
     const userIndex = comment.likes.indexOf(req.user.id);
@@ -63,12 +63,12 @@ const editComment = asyncHandler(async (req, res, next) => {
     const comment = await CommentModel.findById(req.params.commentId);
     if (!comment) {
       const error = new Error("Comment not found.");
-      error.statusCode(404);
+      error.statusCode = 404;
       throw error;
     }
     if (comment.userId !== req.user.id && !req.user.isAdmin) {
       const error = new Error("You are not allowed to edit this comment.");
-      error.statusCode(403);
+      error.statusCode = 403;
       throw error;
     }
     const editedComment = await CommentModel.findByIdAndUpdate(
@@ -91,12 +91,12 @@ const deleteComment = asyncHandler(async (req, res, next) => {
     const comment = await CommentModel.findById(req.params.commentId);
     if (!comment) {
       const error = new Error("Comment not found.");
-      error.statusCode(404);
+      error.statusCode = 404;
       throw error;
     }
     if (comment.userId !== req.user.id && !req.user.isAdmin) {
       const error = new Error("You are not allowed to delete this comment.");
-      error.statusCode(403);
+      error.statusCode = 403;
       throw error;
     }
     const deletedComment = await CommentModel.findByIdAndDelete(

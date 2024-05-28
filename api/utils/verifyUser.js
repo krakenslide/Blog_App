@@ -2,14 +2,15 @@ const jwt = require("jsonwebtoken");
 const verifyToken = (req, res, next) => {
   const token = req.cookies.accessToken;
   if (!token) {
-    const error = new Error("Unauthorized (no token)").statusCode(403);
+    const error = new Error("Unauthorized (no token)");
+    error.statusCode = 403;
     return next(error);
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
       const error = new Error("Unauthorized");
-      error.statusCode(403);
+      error.statusCode = 403;
       throw error;
     }
     req.user = user;

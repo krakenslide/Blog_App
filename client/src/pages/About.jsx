@@ -26,17 +26,15 @@ import { IoSchool } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
 import { RiMentalHealthFill } from "react-icons/ri";
 import { FaGitAlt, FaJava } from "react-icons/fa";
-import { useMediaQuery } from "react-responsive";
 
 export default function About() {
   const { theme } = useSelector((state) => state.theme);
   const heroImageDark =
-    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXpkeXkycHkzcm81dnA0Y2NncmVyZW5ncGxqeTNjYm1yM2VtdHZ3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3osxYzuMvUJJcqzND2/giphy.gif";
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW95a2R1a21zNXhvODZpdHE1eHpjZHRtZGxlMmpmMnZnNHY3djUwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0Iy0WGm1oN84idbO/giphy.gif";
   const heroImageLight =
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzV5cnR2ZW9hcDgzYnlpNDZ6NTYzdzJwd2JnNDAwemZyMDgwdG84bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vReTmBHnPsC4oHS/giphy.gif";
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
-  const isXs = useMediaQuery({ query: "(max-width: 640px)" });
 
   return (
     <div

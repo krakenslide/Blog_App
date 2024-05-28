@@ -91,7 +91,7 @@ export default function Header() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold dark:text-white"
           >
-            {isXs ? "SKB" : "Standard Kraken Board"}
+            {isXs ? "SKB" : "Standard Kraken Blog"}
           </motion.span>
         </motion.div>
       </Link>

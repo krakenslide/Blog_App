@@ -30,8 +30,7 @@ import { FaGitAlt, FaJava } from "react-icons/fa";
 export default function About() {
   const { theme } = useSelector((state) => state.theme);
   const heroImageDark =
-    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHhxbG8yeWI3ejR2MDNhaXI1dGtvcDh4NWtyanZvdjRoamtyNGVmcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jqwzq0LoZOfLqqJZ0b/giphy.gif";
-
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXpkeXkycHkzcm81dnA0Y2NncmVyZW5ncGxqeTNjYm1yM2VtdHZ3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3osxYzuMvUJJcqzND2/giphy.gif";
   const heroImageLight =
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzV5cnR2ZW9hcDgzYnlpNDZ6NTYzdzJwd2JnNDAwemZyMDgwdG84bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vReTmBHnPsC4oHS/giphy.gif";
 

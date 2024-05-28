@@ -11,7 +11,7 @@ export default function Home() {
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
   const { theme } = useSelector((state) => state.theme);
   const heroImageDark =
-    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN25meDJhdG1hNndmd3RxaDhrMzBkM2xscGd1aTJtcjA5OXY2b3R6MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zgduo4kWRRDVK/giphy.gif";
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnkxMmI4NGtmNzZzaW1nYXY5N2llbG90bGpydjV6M2V1anZobjZ0ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/h1eM0TJLW1r81cQ2F4/giphy.gif";
   const heroImageLight =
     "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzV6d3M1Y2ZnN2ozMXBreXFzcjZxc3BuZHFweG80YnU5dzJ0Mnc3YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5FM34bwCph7q4lnuhZ/giphy.gif";
 
@@ -73,7 +73,7 @@ export default function Home() {
 
       {/* Recent Posts Section */}
       <div className=" flex items-center justify-center px-8 md:px-9 py-7">
-        {posts && posts.length > 0 && (
+        {posts && posts.length > 0 ? (
           <div className="flex flex-col gap-6">
             <h2 className="text-2xl font-semibold text-center mb-4">
               Recent Posts
@@ -98,6 +98,18 @@ export default function Home() {
               View all Posts
             </Link>
           </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-md"
+          >
+            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16 mb-4"></div>
+            <p className="text-lg font-medium text-gray-700 text-center">
+              Please wait. The posts take around 2 mins to load the first time.
+            </p>
+          </motion.div>
         )}
       </div>
     </div>

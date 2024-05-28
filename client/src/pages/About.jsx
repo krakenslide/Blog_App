@@ -34,8 +34,6 @@ export default function About() {
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXpkeXkycHkzcm81dnA0Y2NncmVyZW5ncGxqeTNjYm1yM2VtdHZ3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3osxYzuMvUJJcqzND2/giphy.gif";
   const heroImageLight =
     "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzV5cnR2ZW9hcDgzYnlpNDZ6NTYzdzJwd2JnNDAwemZyMDgwdG84bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vReTmBHnPsC4oHS/giphy.gif";
-  const xsImageDark =
-    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDg4MWhwbXhlcnl3OTVpNG9yczRreWRueXYwazl3czVtcnQ3bHhlaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fs6OGJ4Eb3ajC/giphy.gif";
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
   const isXs = useMediaQuery({ query: "(max-width: 640px)" });
@@ -48,13 +46,11 @@ export default function About() {
     >
       {/* Parallax Section */}
       <motion.div
-        className="bg-fixed bg-center h-screen flex flex-col items-center justify-center text-white relative"
+        className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"
         style={{
           backgroundImage:
             theme === "dark"
-              ? isXs
-                ? `url(${xsImageDark})`
-                : `url(${heroImageDark})}`
+              ? `url(${heroImageDark})`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -82,9 +78,7 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? isXs
-                ? `url(${xsImageDark})`
-                : `url(${heroImageDark})}`
+              ? `url(${heroImageDark})`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -121,9 +115,7 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? isXs
-                ? `url(${xsImageDark})`
-                : `url(${heroImageDark})}`
+              ? `url(${heroImageDark})`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -212,9 +204,7 @@ export default function About() {
         style={{
           backgroundImage:
             theme === "dark"
-              ? isXs
-                ? `url(${xsImageDark})`
-                : `url(${heroImageDark})}`
+              ? `url(${heroImageDark})`
               : `url(${heroImageLight})`,
           backgroundSize: "cover",
           backgroundPosition: "center",

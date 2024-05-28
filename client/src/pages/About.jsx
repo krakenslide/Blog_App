@@ -26,6 +26,7 @@ import { IoSchool } from "react-icons/io5";
 import { MdWork } from "react-icons/md";
 import { RiMentalHealthFill } from "react-icons/ri";
 import { FaGitAlt, FaJava } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 export default function About() {
   const { theme } = useSelector((state) => state.theme);
@@ -36,6 +37,7 @@ export default function About() {
 
   const { scrollY } = useScroll();
   const scale = useTransform(scrollY, [0, 500], [1, 1.5]);
+  const isXs = useMediaQuery({ query: "(max-width: 640px)" });
 
   return (
     <div
@@ -45,7 +47,7 @@ export default function About() {
     >
       {/* Parallax Section */}
       <motion.div
-        className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"
+        className="bg-fixed bg-center h-screen flex flex-col items-center justify-center text-white relative"
         style={{
           backgroundImage:
             theme === "dark"

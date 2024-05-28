@@ -18,6 +18,7 @@ function PostPage() {
   const [error, setError] = useState(false);
   const [recentPosts, setRecentPosts] = useState(null);
   const [post, setPost] = useState(null);
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -44,8 +45,8 @@ function PostPage() {
   }, [postslug]);
 
   useEffect(() => {
-    try {
-      const fetchRecentPosts = async () => {
+    const fetchRecentPosts = async () => {
+      try {
         const res = await fetch(
           `https://blog-app-8j8t.onrender.com/api/posts/getposts?limit=3`,
         );
@@ -53,11 +54,11 @@ function PostPage() {
         if (res.ok) {
           setRecentPosts(data.posts);
         }
-      };
-      fetchRecentPosts();
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRecentPosts();
   }, []);
 
   if (loading)
@@ -66,6 +67,7 @@ function PostPage() {
         <Spinner size="xl" />
       </div>
     );
+
   return (
     <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       <h1 className="text-3xl mt-10 p-3 text-center font-sans-Helvetica max-w-2xl mx-auto lg:text-4xl">
@@ -99,7 +101,7 @@ function PostPage() {
       <div className="max-w-4xl mx-auto w-full">
         <CallToAction />
       </div>
-      <CommentSection postId={post._id} />
+      <CommentSection postId={post?._id} />
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -107,7 +109,7 @@ function PostPage() {
         className="flex flex-col justify-center items-center mb-5"
       >
         <h1 className="text-xl mt-5">Recent articles</h1>
-        <div className="flex flex-row gap-5 mt-5 justify-center">
+        <div className="flex flex-col md:flex-row gap-5 mt-5 justify-center">
           {recentPosts &&
             recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>

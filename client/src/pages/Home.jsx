@@ -103,11 +103,22 @@ export default function Home() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="flex flex-col items-center justify-center p-6 bg-gray-100 rounded-lg shadow-md"
+            className="flex flex-col space-x-2 items-center justify-center p-6 rounded-lg"
           >
-            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16 mb-4"></div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex flex-row space-x-2 items-center justify-center p-6 rounded-lg"
+            >
+              <span className="sr-only">Loading...</span>
+              <div className="h-8 w-8 bg-teal-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div className="h-8 w-8 bg-teal-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div className="h-8 w-8 bg-teal-500 rounded-full animate-bounce"></div>
+            </motion.div>
             <p className="text-lg font-medium text-gray-700 text-center">
-              Please wait. The posts take around 2 mins to load the first time.
+              Please wait. The posts take around a minute to load the first time
+              around.
             </p>
           </motion.div>
         )}

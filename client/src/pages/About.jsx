@@ -62,10 +62,10 @@ export default function About() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-center p-3"
         >
-          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-gray-500">
+          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-[#8a9a9d]">
             About Me
           </h1>
-          <p className="text-lg text-gray-200 dark:text-gray-500">
+          <p className="text-lg text-gray-200 dark:text-[#8a9a9d]">
             I'm Ankit, a passionate developer on a journey to explore and master
             various technologies.
           </p>
@@ -90,10 +90,10 @@ export default function About() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-center max-w-3xl"
         >
-          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-gray-500">
+          <h1 className="text-5xl font-bold mb-6 text-gray-200 dark:text-[#8a9a9d]">
             Description
           </h1>
-          <p className="text-md m-5 p-5 text-gray-200 dark:text-gray-500">
+          <p className="text-md m-5 p-5 text-gray-200 dark:text-[#8a9a9d]">
             Much like the iconic DVD logo bouncing around the screen, I'm
             navigating the diverse corners of technology, never settling in one
             place for too long. Here today, exploring tomorrow - a perpetual
@@ -127,7 +127,7 @@ export default function About() {
         <div className="container min-h-screen mx-auto py-16">
           <h2
             className={
-              "text-4xl font-bold mb-8 text-center text-gray-200 dark:text-gray-500"
+              "text-4xl font-bold mb-8 text-center text-gray-200 dark:text-[#8a9a9d]"
             }
           >
             Technologies worked with
@@ -197,54 +197,54 @@ export default function About() {
           </div>
         </div>
       </motion.div>
-      <motion.div
-        className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"
-        style={{
-          backgroundImage:
-            theme === "dark"
-              ? `url(${heroImageDark})`
-              : `url(${heroImageLight})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          transform: `scale(${scale})`,
-        }}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <div className="container mx-auto py-16">
-          <h2 className="text-4xl font-bold mb-8 text-center text-gray-200 dark:text-gray-500">
-            Technologies currently learning
-          </h2>
-          <div className="p-5 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
-            <TechStack
-              icon={<FaJava className="text-6xl text-red-500 mb-2" />}
-              name="Java"
-              shadow="shadow-red-500"
-              theme={theme}
-            />
-            <TechStack
-              icon={<SiSpring className="text-6xl text-green-500 mb-2" />}
-              name="Spring"
-              shadow="shadow-green-500"
-              theme={theme}
-            />
-            <TechStack
-              icon={<SiSpringboot className="text-6xl text-green-500 mb-2" />}
-              name="Spring Boot"
-              shadow="shadow-green-500"
-              theme={theme}
-            />
-            <TechStack
-              icon={<SiApachemaven className="text-6xl text-orange-500 mb-2" />}
-              name="Maven"
-              shadow="shadow-orange-500"
-              theme={theme}
-            />
-          </div>
-        </div>
-      </motion.div>
+      {/*<motion.div*/}
+      {/*  className="bg-cover bg-center h-screen flex flex-col items-center justify-center text-white relative"*/}
+      {/*  style={{*/}
+      {/*    backgroundImage:*/}
+      {/*      theme === "dark"*/}
+      {/*        ? `url(${heroImageDark})`*/}
+      {/*        : `url(${heroImageLight})`,*/}
+      {/*    backgroundSize: "cover",*/}
+      {/*    backgroundPosition: "center",*/}
+      {/*    backgroundAttachment: "fixed",*/}
+      {/*    transform: `scale(${scale})`,*/}
+      {/*  }}*/}
+      {/*  initial={{ opacity: 0, y: 50 }}*/}
+      {/*  animate={{ opacity: 1, y: 0 }}*/}
+      {/*  transition={{ duration: 1, delay: 0.5 }}*/}
+      {/*>*/}
+      {/*  <div className="container mx-auto py-16">*/}
+      {/*    <h2 className="text-4xl font-bold mb-8 text-center text-gray-200 dark:text-[#8a9a9d]">*/}
+      {/*      Technologies currently learning*/}
+      {/*    </h2>*/}
+      {/*    <div className="p-5 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">*/}
+      {/*      <TechStack*/}
+      {/*        icon={<FaJava className="text-6xl text-red-500 mb-2" />}*/}
+      {/*        name="Java"*/}
+      {/*        shadow="shadow-red-500"*/}
+      {/*        theme={theme}*/}
+      {/*      />*/}
+      {/*      <TechStack*/}
+      {/*        icon={<SiSpring className="text-6xl text-green-500 mb-2" />}*/}
+      {/*        name="Spring"*/}
+      {/*        shadow="shadow-green-500"*/}
+      {/*        theme={theme}*/}
+      {/*      />*/}
+      {/*      <TechStack*/}
+      {/*        icon={<SiSpringboot className="text-6xl text-green-500 mb-2" />}*/}
+      {/*        name="Spring Boot"*/}
+      {/*        shadow="shadow-green-500"*/}
+      {/*        theme={theme}*/}
+      {/*      />*/}
+      {/*      <TechStack*/}
+      {/*        icon={<SiApachemaven className="text-6xl text-orange-500 mb-2" />}*/}
+      {/*        name="Maven"*/}
+      {/*        shadow="shadow-orange-500"*/}
+      {/*        theme={theme}*/}
+      {/*      />*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</motion.div>*/}
       <div
         className={
           "font-sans text-gray-800 dark:bg-gray-900 dark:text-gray-200 overflow-x-hidden"
@@ -253,7 +253,7 @@ export default function About() {
         <div className="flex items-center justify-center pt-10">
           <h2
             className={
-              "text-4xl font-bold mb-8 text-center text-gray-700 dark:text-gray-500"
+              "text-4xl font-bold mb-8 text-center text-gray-700 dark:text-[#8a9a9d]"
             }
           >
             Professional Timeline
